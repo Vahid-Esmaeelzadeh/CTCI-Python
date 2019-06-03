@@ -42,8 +42,7 @@ class fixedMultiStack:
         return (stackNum * self.stackCapacity) + self.sizes[stackNum] - 1
 
 
-print("#############################################")
-
+print("----------- Q3.1 -----------")
 multiStack1 = fixedMultiStack(3)
 multiStack1.push(0, 1)
 multiStack1.push(0, 2)
@@ -54,9 +53,6 @@ print(multiStack1.pop(0))
 print(multiStack1.sizes)
 print(multiStack1.pop(2))
 print(multiStack1.sizes)
-
-print("#############################################")
-
 # endregion
 # region Question 3.2 (Stack min)
 import sys
@@ -142,11 +138,10 @@ stk2.push(4)
 stk1.push(1)
 stk2.push(1)
 
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+print("----------- Q3.2 -----------")
 print(stk1.min(), " -- ", stk2.min())
 print(stk1.pop(), " -- ", stk2.pop())
 print(stk1.min(), " -- ", stk2.min())
 print(stk1.peek(), " -- ", stk2.peek())
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 # endregion
 
