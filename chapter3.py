@@ -276,7 +276,44 @@ list1 = [10, -100, 3, 1.55, 7, -1, 2, 1]
 sortStack(list1)
 print(list1)
 # endregion
+# region Question 3.6 (Animal Shelter)
 
+class node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class linkedList:
+    def __init__(self, head: node):
+        self.head = head
+
+    def addLast(self, item: node):
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        current.next = item
+
+    def print(self):
+        current = self.head
+        while current.next is not None:
+            print(current.data, "->", end=" ")
+            current = current.next
+        print(current.data)
+
+shelter = linkedList(node('1'))
+shelter.addLast(node('2'))
+shelter.addLast(node('3'))
+shelter.print()
+
+
+
+
+class animalShelter:
+    def __init__(self):
+        self.ll = linkedList()
+
+
+# endregion
 
 
 
