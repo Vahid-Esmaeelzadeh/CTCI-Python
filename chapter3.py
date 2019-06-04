@@ -306,7 +306,15 @@ class linkedList:
 
     def peek(self):
         if self.head is not None:
-            return self.head.data
+            return self.head
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current is not None:
+            current = current.next
+            count += 1
+        return count
 
     def print(self):
         current = self.head
@@ -324,11 +332,11 @@ class animal:
 
 class Dog(animal):
     def __init__(self, name: str):
-        super(str)
+        super().__init__(name)
 
 class Cat(animal):
-    def __init__(self, name:str):
-        super(str)
+    def __init__(self, name: str):
+        super().__init__(name)
 
 class animalShelter:
     def __init__(self):
@@ -346,9 +354,9 @@ class animalShelter:
             self.cats.addLast(a)
 
     def dequeueAny(self):
-        if len(self.dogs) == 0:
+        if self.dogs.size() == 0:
             return self.cats.remove()
-        if len(self.cats) == 0:
+        if self.cats.size() == 0:
             return self.dog.remove()
 
         dog = self.dogs.peek()
@@ -365,24 +373,20 @@ class animalShelter:
     def dequeueCat(self):
         return self.cats.remove()
 
-shelter1 = linkedList(node('1'))
-shelter1.addLast(node('2'))
-shelter1.addLast(node('3'))
-shelter1.print()
-print("---, ", shelter1.remove().data)
-print("---, ", shelter1.remove().data)
-shelter1.print()
-print(shelter1.peek())
+shelter = animalShelter()
+shelter.enqueue(Dog("dog1"))
+shelter.enqueue(Cat("cat1"))
+shelter.enqueue(Dog("dog2"))
+shelter.enqueue(Dog("dog3"))
+shelter.enqueue(Cat("cat2"))
+
+print("%%%%, ", shelter.dequeueAny().data)
+print("%%%%, ", shelter.dequeueDog().data)
+print("%%%%, ", shelter.dequeueCat().data)
+print("%%%%, ", shelter.dequeueAny().data)
+print("%%%%, ", shelter.dequeueDog())
 
 
-shelter2 = animalShelter()
-shelter2.enqueue(Dog("dog1"))
-shelter2.enqueue(Cat("cat1"))
-shelter2.enqueue(Dog("dog2"))
-shelter2.enqueue(Dog("dog3"))
-shelter2.enqueue(Cat("cat2"))
-
-print("%%%%, ", shelter2.dequeueAny())
 
 
 # endregion
