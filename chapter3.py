@@ -284,33 +284,105 @@ class node:
         self.next = None
 
 class linkedList:
-    def __init__(self, head: node):
+    def __init__(self, head=None):
         self.head = head
 
-    def addLast(self, item: node):
+    def addLast(self, item):
+        if self.head is None:
+            self.head = item
+            return
+
         current = self.head
         while current.next is not None:
             current = current.next
+
         current.next = item
+
+    def remove(self):
+        if self.head is not None:
+            current = self.head
+            self.head = self.head.next
+            return current
+
+    def peek(self):
+        if self.head is not None:
+            return self.head.data
 
     def print(self):
         current = self.head
-        while current.next is not None:
-            print(current.data, "->", end=" ")
+        print("[ ", end="")
+        while current is not None:
+            print(current.data, end=" ")
             current = current.next
-        print(current.data)
+        print("]")
 
-shelter = linkedList(node('1'))
-shelter.addLast(node('2'))
-shelter.addLast(node('3'))
-shelter.print()
+class animal:
+    def __init__(self, name: str):
+        self.data = name
+        self.next = None
+        self.order = 0
 
+class Dog(animal):
+    def __init__(self, name: str):
+        super(str)
 
-
+class Cat(animal):
+    def __init__(self, name:str):
+        super(str)
 
 class animalShelter:
     def __init__(self):
-        self.ll = linkedList()
+        self.cats = linkedList()
+        self.dogs = linkedList()
+        self.order = 0
+
+    def enqueue(self, a: animal):
+        a.order = self.order
+        self.order += 1
+
+        if isinstance(a, Dog):
+            self.dogs.addLast(a)
+        elif isinstance(a, Cat):
+            self.cats.addLast(a)
+
+    def dequeueAny(self):
+        if len(self.dogs) == 0:
+            return self.cats.remove()
+        if len(self.cats) == 0:
+            return self.dog.remove()
+
+        dog = self.dogs.peek()
+        cat = self.cats.peek()
+
+        if dog.order < cat.order:
+            return self.dogs.remove()
+        else:
+            return self.cats.remove()
+
+    def dequeueDog(self):
+        return self.dogs.remove()
+
+    def dequeueCat(self):
+        return self.cats.remove()
+
+shelter1 = linkedList(node('1'))
+shelter1.addLast(node('2'))
+shelter1.addLast(node('3'))
+shelter1.print()
+print("---, ", shelter1.remove().data)
+print("---, ", shelter1.remove().data)
+shelter1.print()
+print(shelter1.peek())
+
+
+shelter2 = animalShelter()
+shelter2.enqueue(Dog("dog1"))
+shelter2.enqueue(Cat("cat1"))
+shelter2.enqueue(Dog("dog2"))
+shelter2.enqueue(Dog("dog3"))
+shelter2.enqueue(Cat("cat2"))
+
+print("%%%%, ", shelter2.dequeueAny())
 
 
 # endregion
