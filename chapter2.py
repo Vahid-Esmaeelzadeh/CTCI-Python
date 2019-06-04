@@ -1,34 +1,73 @@
-#region Question 2.1
-from LinkedList import *
+#region Question 2.1 (remove duplicates)
+class node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
 
-def removeDups(ll:LinkedList):
-    cur = ll.head
-    buffer = []
-    prev = None
-    while cur:
-        if cur.data in buffer:
-            prev.next = cur.next
-            cur = prev.next
+class linkedList:
+    def __init__(self, head=None):
+        self.head = head
+
+    def addLast(self, item):
+        if self.head is None:
+            self.head = item
+            return
+
+        current = self.head
+        while current.next is not None:
+            current = current.next
+
+        current.next = item
+
+    def remove(self):
+        if self.head is not None:
+            current = self.head
+            self.head = self.head.next
+            return current
+
+    def peek(self):
+        if self.head is not None:
+            return self.head
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current is not None:
+            current = current.next
+            count += 1
+        return count
+
+    def print(self):
+        current = self.head
+        print("[ ", end="")
+        while current is not None:
+            print(current.data, end=" ")
+            current = current.next
+        print("]")
+
+
+def removeDups(ll: linkedList):
+    n = ll.head
+    dataset = set([])
+    prev = node()
+    while n is not None:
+        if n.data in dataset:
+            prev.next = n.next
         else:
-            buffer.append(cur.data)
-            prev = cur
-            cur = cur.next
+            dataset.add(n.data)
+            prev = n
+        n = n.next
 
-list1 = LinkedList()
-n1 = llNode('x')
-n2 = llNode(2)
-n3 = llNode(1)
-n4 = llNode('x')
-n5 = llNode(7)
 
-list1.head = n1
-n1.next = n2
-n2.next = n3
-n3.next = n4
-n4.next = n5
+l1 = linkedList(node(1))
+l1.addLast(node(1))
+l1.addLast(node(1))
+l1.addLast(node(1))
+l1.addLast(node(1))
+l1.print()
 
-list1.printlist()
-removeDups(list1)
-list1.printlist()
+
+removeDups(l1)
+l1.print()
 
 #endregion
