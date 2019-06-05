@@ -136,3 +136,29 @@ kLast_recr(Q22list, 1)
 print(kLast(Q22list, 0))
 
 # endregion
+
+# region Question 2.3 (delete middle node)
+def deleteNode(n: node):
+    if n is None or n.next is None:
+        return False
+
+    nextNode:node = n.next
+    n.data = nextNode.data
+    n.next = nextNode.next
+
+    return True
+
+Q23list = linkedList(node(1))
+Q23list.addLast(node(2))
+Q23list.addLast(node(3))
+Q23list.addLast(node(4))
+Q23list.addLast(node(5))
+
+Q23list.print()
+
+deleteNode(Q23list.head.next.next)
+Q23list.print()
+deleteNode(Q23list.head.next)
+Q23list.print()
+
+# endregion
