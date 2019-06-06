@@ -16,7 +16,7 @@ def countways2_helper(n: int, memo: list):
     if n == 0:
         return 1
     if memo[n] is None:
-        memo[n] = countways1(n-1) + countways1(n-2) + countways1(n-3)
+        memo[n] = countways2_helper(n-1, memo) + countways2_helper(n-2, memo) + countways2_helper(n-3, memo)
     return memo[n]
 
 def countways3(n: int):
@@ -40,9 +40,9 @@ def countways3(n: int):
 
     return count
 
-print(countways1(1))
-print(countways2(1))
-print(countways3(1))
+print(countways1(10))
+print(countways2(10))
+print(countways3(10))
 
 #region Question 8.4 (power set)
 def getAllSubsets(lst):
