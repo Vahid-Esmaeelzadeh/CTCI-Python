@@ -312,8 +312,8 @@ class linkedList:
         current = self.head
         count = 0
         while current is not None:
-            current = current.next
             count += 1
+            current = current.next
         return count
 
     def print(self):
