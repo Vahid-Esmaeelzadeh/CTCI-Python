@@ -144,7 +144,7 @@ def deleteNode(n: node):
     if n is None or n.next is None:
         return False
 
-    nextNode:node = n.next
+    nextNode: node = n.next
     n.data = nextNode.data
     n.next = nextNode.next
 
@@ -344,3 +344,4 @@ sumLists_recursive(l1, l2).print()
 
 addLists(l1, l2).print()
 # endregion
+

@@ -43,7 +43,7 @@ def countways3(n: int):
 print(countways1(10))
 print(countways2(10))
 print(countways3(10))
-
+# endregion
 #region Question 8.4 (power set)
 def getAllSubsets(lst):
     if not lst:

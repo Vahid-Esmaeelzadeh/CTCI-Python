@@ -390,6 +390,3 @@ print("%%%%, ", shelter.dequeueDog())
 
 
 # endregion
-
-
-
