@@ -21,9 +21,8 @@ def isPalindrome(ll: linkedList) -> bool:
         current = current.next
 
     while current is not None:
-        if current.data != stk[-1]:
+        if current.data != stk.pop():
             return False
-        stk.pop()
         current = current.next
 
     if len(stk) == 0:

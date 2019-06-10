@@ -16,7 +16,7 @@ def findIntersection(list1: node, list2: node):
     tailAndSize1 = getTailAndSize(list1)
     tailAndSize2 = getTailAndSize(list2)
 
-    # If different tails -> we don't have  any inersection
+    # If different tails -> we don't have  any intersection
     if tailAndSize1.tail != tailAndSize2.tail:
         return None
 

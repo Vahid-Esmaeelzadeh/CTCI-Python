@@ -8,6 +8,7 @@ def removeDups(ll: linkedList):
     while n is not None:
         if n.data in dataset:
             prev.next = n.next
+            # no need to change the prev pointer
         else:
             dataset.add(n.data)
             prev = n

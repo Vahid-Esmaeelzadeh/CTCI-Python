@@ -32,6 +32,11 @@ def countways3(n: int):
     c2 = 2
     count = 0
 
+    # c0, c1, c2, count
+    #	   |   |   |
+    #	  \/  \/   \/
+    # 	  c0, c1, c2
+
     for i in range(3, n+1):
         count = c0 + c1 + c2
         c0 = c1

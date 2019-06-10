@@ -5,9 +5,9 @@ def deleteNode(n: node):
     if n is None or n.next is None:
         return False
 
-    nextNode: node = n.next
-    n.data = nextNode.data
-    n.next = nextNode.next
+    #nextNode: node = n.next
+    n.data = n.next.data
+    n.next = n.next.next
 
     return True
 

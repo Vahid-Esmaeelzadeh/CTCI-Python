@@ -77,17 +77,17 @@ class animalShelter:
 
     def dequeueAny(self):
         if self.dogs.size() == 0:
-            return self.cats.remove()
+            return self.dequeueCat()
         if self.cats.size() == 0:
-            return self.dog.remove()
+            return self.dequeueDog()
 
         dog = self.dogs.peek()
         cat = self.cats.peek()
 
         if dog.order < cat.order:
-            return self.dogs.remove()
+            return self.dequeueDog()
         else:
-            return self.cats.remove()
+            return self.dequeueCat()
 
     def dequeueDog(self):
         return self.dogs.remove()

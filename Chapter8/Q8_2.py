@@ -5,8 +5,8 @@ def pathFinder(maze):
     path = []
     if len(maze) == 0:
         return path
-    if pathFinder_helper(maze, len(maze) - 1, len(maze[0]) - 1, path):
-        return path
+
+    pathFinder_helper(maze, len(maze) - 1, len(maze[0]) - 1, path)
     return path
 
 
@@ -34,12 +34,13 @@ print(pathFinder(maze))
 
 # region Dynamic programming approach
 def pathFinder_DP(maze):
+    if len(maze) == 0:
+        return []
+
     path = []
     failedPoints = set()
-    if len(maze) == 0:
-        return path
-    if pathFinder_helper_DP(maze, len(maze) - 1, len(maze[0]) - 1, path, failedPoints):
-        return path
+
+    pathFinder_helper_DP(maze, len(maze) - 1, len(maze[0]) - 1, path, failedPoints)
     return path
 
 

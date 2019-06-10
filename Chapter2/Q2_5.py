@@ -78,6 +78,7 @@ def addLists(l1: linkedList, l2: linkedList):
     if diff < 0:
         l1 = padList(l1, -diff)
 
+    # now, we have same length lists
     n1 = l1.head
     n2 = l2.head
 
