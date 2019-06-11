@@ -4,9 +4,10 @@ class btreeNode:
         self.left = None
         self.right = None
 
+
 def preOrderPrint(n: btreeNode):
     if n is not None:
-        print(n.data)
+        print(n.data, end=' ')
         preOrderPrint(n.left)
         preOrderPrint(n.right)
 
@@ -31,3 +32,4 @@ def minHeight_helper(a, start, end):
 a = [0, 5, 7, 9, 10, 12, 13, 17]
 resultTree = minHeight(a)
 preOrderPrint(resultTree)
+print("\n")
