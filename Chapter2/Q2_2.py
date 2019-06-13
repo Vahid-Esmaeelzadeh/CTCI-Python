@@ -1,18 +1,16 @@
 from Common.common import *
 
 # region Question 2.2 (Return Kth to Last)
-def kLast_basic(ll:linkedList, k:int):
-    N = ll.size()
-    if k > N or k < 0:
-        return None
+def kLast_basic(lst:linkedList, k:int):
+    _size = lst.size()
+    i = _size - k
 
-    itemNum = N - k
-    i = 1
-    current = ll.head
-    while (current is not None) and i != itemNum:
-        i += 1
+    current = lst.head
+    while (current is not None) and i > 0:
         current = current.next
-    return current.data
+        i -= 1
+
+    return current
 
 def kLast_recr(ll:linkedList, k:int):
     kLast_helper(ll.head, k)

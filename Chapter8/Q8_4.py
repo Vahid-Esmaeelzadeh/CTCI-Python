@@ -1,6 +1,6 @@
 #region Question 8.4 (power set)
 def getAllSubsets(lst):
-    if not lst:
+    if len(lst) == 0:
         return [[]]
     outlist = getAllSubsets(lst[1:])
     '''
@@ -23,18 +23,18 @@ def powerset(lst):
     return allsubsets
 def int2set(lst, i):
     subset = []
-    k = i
     index = 0
-    while k > 0:
-        if (k & 1) == 1:
+    while i > 0:
+        if (i & 1) == 1:
             subset += [lst[index]]
             #subset.append(lst[index])
         index += 1
-        k >>= 1
+        i >>= 1
     return subset
 
 
 set_in = [1, 2, 3]
 print(getAllSubsets(set_in))
-print (powerset(set_in))
+print(powerset(set_in))
+
 #endregion

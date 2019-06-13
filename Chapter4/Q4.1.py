@@ -23,8 +23,8 @@ def searchDFS(start: Node):
     if start is None:
         return
 
-    start.state = State.Visited
     print(start.name)
+    start.state = State.Visited
 
     for v in start.adjacentlist:
         if v.state == State.Unvisited:
@@ -60,7 +60,6 @@ def searchBFS(start: Node):
             if v.state == State.Unvisited:
                 v.state = State.Visited
                 q.append(v)
-
 
 def isThereRoute_BFS(start: Node, end: Node):
     if start == end:

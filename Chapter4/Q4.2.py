@@ -28,8 +28,29 @@ def minHeight_helper(a, start, end):
 
     return n
 
+# review 1 code:
+def minTree(a):
+    _size = len(a)
+
+    if _size == 0:
+        return None
+
+    midIndex = _size // 2
+    midValue = a[midIndex]
+
+    root = btreeNode(midValue)
+    root.left = minTree(a[:midIndex])
+    root.right = minTree(a[midIndex + 1:])
+
+    return root
+
 
 a = [0, 5, 7, 9, 10, 12, 13, 17]
 resultTree = minHeight(a)
+minT = minTree(a)
 preOrderPrint(resultTree)
+print("\n")
+preOrderPrint(minT)
+
+
 print("\n")
