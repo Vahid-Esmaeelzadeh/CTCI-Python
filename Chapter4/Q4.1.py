@@ -42,7 +42,6 @@ def isThereRoute_DFS(start: Node, end: Node):
 
     for v in start.adjacentlist:
         if v.state == State.Unvisited:
-            v.state = State.Visited
             if isThereRoute_DFS(v, end):
                 return True
 
@@ -79,6 +78,8 @@ def isThereRoute_BFS(start: Node, end: Node):
                 v.state = State.Visited
                 q.append(v)
 
+    return False
+
 g = Graph()
 nodes = []
 
@@ -96,6 +97,6 @@ nodes[7].adjacentlist = []
 
 g.nodes = nodes
 
-#print(isThereRoute_DFS(nodes[7], nodes[1]))
-print(isThereRoute_BFS(nodes[0], nodes[7]))
+print(isThereRoute_DFS(nodes[0], nodes[7]))
+# print(isThereRoute_BFS(nodes[0], nodes[7]))
 

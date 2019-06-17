@@ -4,12 +4,10 @@ class Node:
         self.left = None
         self.right = None
 
+
 def BSTsequences(root: Node):
     if root is None:
         return [[]]
-
-    #if root.left is None and root.right is None:
-     #   return [[root.data]]
 
     sequences = []
     prefix = root.data

@@ -37,4 +37,12 @@ set_in = [1, 2, 3]
 print(getAllSubsets(set_in))
 print(powerset(set_in))
 
+
+a = [[1, 2, 3]]
+a += [[4, 5, 6]]
+a.append(20)
+print(a)
+
+
 #endregion
+
