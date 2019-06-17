@@ -25,7 +25,6 @@ class Node:
         else:
             return self.right.getIthNode(i - (leftSize + 1))
 
-
     def getRandomNode1(self):
         leftSize = 0
         if self.left is not None:
