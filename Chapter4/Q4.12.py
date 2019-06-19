@@ -43,7 +43,6 @@ def countPathsWithSumFromNode(n: Node, targetSum: int, currentSum: int) -> int:
 
     return totalPaths
 
-
 def countPathsWithSum2(root: Node, targetSum: int) -> int:
     return countPathsWithSum_rcr(root, targetSum, 0, dict())
 def countPathsWithSum_rcr(n: Node, targetSum: int, runningSum: int, pathCount: dict) -> int:
@@ -72,6 +71,13 @@ def countPathsWithSum_rcr(n: Node, targetSum: int, runningSum: int, pathCount: d
 
     return totalPaths
 
+def anySum(lst: list, targetSum: int) -> int:
+    # I should implement
+    return 0
+
+def nSum(lst: list, targetSum: int, n: int) -> int:
+    # generalized version of two-sum, three-sum problems
+    return 0
 
 root = Node(20)
 root.insertInOrder(10)

@@ -10,7 +10,7 @@ def loopDetection(lst: node):
 
     nodes = set()  # to save the  running nodes
     current = lst
-    while current is not None:
+    while current:
         if current not in nodes:  # it is a new node, add it to the set, and go forward
             nodes.add(current)
             current = current.next
@@ -24,7 +24,7 @@ def loopDetection2(head: node):
     fast = head
 
     # find the collision of fast and slow
-    while (fast is not None) and (fast.next is not None):
+    while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
         if slow == fast:  # collision

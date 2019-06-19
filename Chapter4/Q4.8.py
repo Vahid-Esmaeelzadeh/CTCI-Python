@@ -5,22 +5,13 @@ class Node:
         self.right = None
         self.parent = None
 
-# region Solution 1
+# region Solution 1 - using parents - basic - going up from both nodes
 def firstCommonAncestor1(n1: Node, n2: Node):
     if n1 is None or n2 is None:
         return None
 
-    d1, d2 = 0, 0
-    runner1 = n1
-    runner2 = n2
-
-    while runner1 is not None:
-        runner1 = runner1.parent
-        d1 += 1
-
-    while runner2 is not None:
-        runner2 = runner2.parent
-        d2 += 1
+    d1 = findDepth(n1)
+    d2 = findDepth(n2)
 
     diff = d1 - d2
     deeper = None
@@ -35,18 +26,39 @@ def firstCommonAncestor1(n1: Node, n2: Node):
 
     diff = abs(diff)
 
-    while diff > 0 and deeper is not None:
+    while diff > 0 and deeper:
         deeper = deeper.parent
         diff -= 1
 
-    while (deeper != shallower) and (deeper is not None) and (shallower is not None):
+    while deeper and shallower and (deeper != shallower):
         deeper = deeper.parent
         shallower = shallower.parent
 
     return deeper
-# endregion
 
-# region Solution 2
+
+def findDepth(n: Node):
+    runner = n
+    d = 0
+    while runner:
+        runner = runner.parent
+        d += 1
+
+    return d
+# endregion - -  -  - going
+
+# region Solution 2 - using parent - better performance - going up only from one node
+def ancestor(root: Node, p: Node, q: Node):
+    if (not covers(root, p)) or (not covers(root, q)):
+        return None
+
+    if p is None or q is None:
+        return None
+
+    while not covers(p, q):
+        p = p.parent
+
+    return p
 def firstCommonAncestor2(root: Node, p: Node, q: Node):
     if (not covers(root, p)) or (not covers(root, q)):
         return None
@@ -91,9 +103,9 @@ def getSibling(n: Node):
 def firstCommonAncestor3(root: Node, p: Node, q: Node):
     if (not covers(root, p)) or (not covers(root, q)):
         return None
-    return commonAncestor_rcr(root, p, q)
+    return firstCommonAncestor3_helper(root, p, q)
 
-def commonAncestor_rcr(root: Node, p: Node, q: Node):
+def firstCommonAncestor3_helper(root: Node, p: Node, q: Node):
     if root == p or root == q or root is None:
         return root
 
@@ -104,8 +116,8 @@ def commonAncestor_rcr(root: Node, p: Node, q: Node):
         return root
 
     if p_in_left:
-        return commonAncestor_rcr(root.left, p, q)
-    return commonAncestor_rcr(root.right, p, q)
+        return firstCommonAncestor3_helper(root.left, p, q)
+    return firstCommonAncestor3_helper(root.right, p, q)
 # endregion
 
 # region Solution 4
@@ -148,7 +160,11 @@ n7.parent = n5
 n7.left = None
 n7.right = None
 
-anc = firstCommonAncestor1(n4, n7)
+n10 = Node(10)
+n10.parent = None
+
+
+anc = firstCommonAncestor1(n3, n7)
 if anc is not None:
     print(anc.data)
 else:
@@ -160,9 +176,14 @@ if anc is not None:
 else:
     print("None")
 
-anc = firstCommonAncestor3(n1, n4, n7)
+anc = firstCommonAncestor3(n1, n5, n4)
 if anc is not None:
     print(anc.data)
 else:
     print("None")
 
+anc = ancestor(n1, n3, n10)
+if anc is not None:
+    print(anc.data)
+else:
+    print("None")

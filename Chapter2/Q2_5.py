@@ -94,8 +94,7 @@ def addLists(l1: linkedList, l2: linkedList):
 
 def addLists_helper(n1: node, n2: node):
     if n1 is None and n2 is None:
-        pSum = partialSum()
-        return pSum
+        return partialSum()
 
     pSum = addLists_helper(n1.next, n2.next)
 
@@ -103,8 +102,8 @@ def addLists_helper(n1: node, n2: node):
     n = node(val % 10)  # create a new node with the new value
 
     # add the new node at first of list
-    if pSum.sum_list is not None:
-        n.next = pSum.sum_list
+    #if pSum.sum_list:
+    n.next = pSum.sum_list
     pSum.sum_list = n
 
     pSum.carry = val // 10
@@ -113,8 +112,8 @@ def addLists_helper(n1: node, n2: node):
 
 def insertFirst(n: node, val):
     newNode = node(val)
-    if n is not None:
-        newNode.next = n
+    #if n is not None:
+    newNode.next = n
     return newNode
 
 def padList(lst: linkedList, padding):

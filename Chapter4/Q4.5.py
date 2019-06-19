@@ -17,10 +17,8 @@ def isBST_rcr(root, _min, _max):
     isLeftBST = isBST_rcr(root.left, _min, root.data)
     isRightBST = isBST_rcr(root.right, root.data, _max)
 
-    if isLeftBST and isRightBST:
-        return True
+    return isLeftBST and isRightBST
 
-    return False
 
 root = Node(20)
 root.left = Node(10)

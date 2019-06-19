@@ -1,21 +1,23 @@
+from typing import List
+
 # region Question 8.7 (permutations)
-def permutations(str):
-    if len(str) == 0:
-        return ['']
+def permutations(s: str) -> List[str]:
+    if len(s) == 0:
+        return [""]
 
-    prevList = permutations(str[1:])
-    nextList = []
+    subPerm = permutations(s[1:])
+    result = []
 
-    for i in range(len(prevList)):
-        for j in range(len(str)):
-            newString = prevList[i][:j] + str[0] + prevList[i][j:]
-            if newString not in nextList:
-                nextList.append(newString)
+    for x in subPerm:
+        for i in range(len(s)):
+            newString = x[:i] + s[0] + x[i:]
+            if newString not in result:
+                result.append(newString)
 
-    return nextList
+    return result
 
-strList = '\n'.join(permutations('aaab'))
+
+strList = '\n'.join(permutations("aab"))
 print(strList)
-
 
 #endregion

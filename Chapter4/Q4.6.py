@@ -10,17 +10,20 @@ def successor(n: Node):
     if n is None:
         return None
 
-    if n.right is not None:
+    if n.right:
         return leftMostChild(n.right)
 
     i = n
-    while (i.parent is not None) and (i.parent.right == i):  # until the node is the right child
+    while i.parent and (i.parent.right == i):  # until the node is the right child
         i = i.parent
 
     return i.parent
 
 def leftMostChild(n: Node):
-    while n.left is not None:
+    if n is None:
+        return None
+
+    while n.left:
         n = n.left
 
     return n
@@ -62,7 +65,7 @@ n7.left = None
 n7.right = None
 
 
-res = successor(n7)
+res = successor(n5)
 if res is not None:
     print(res.data)
 else:

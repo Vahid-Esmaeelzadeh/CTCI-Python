@@ -14,7 +14,7 @@ def isPalindrome(ll: linkedList) -> bool:
 
     for i in range(listSize // 2):
         stk.append(current.data)
-        i += 1
+        # i += 1
         current = current.next
 
     if listSize % 2 == 1:  # skip the middle node
@@ -38,7 +38,7 @@ def isPalindrome2(ll: linkedList):
     fast = ll.head
     stk = []
 
-    while fast is not None and fast.next is not None:
+    while fast and fast.next:
         stk.append(slow.data)
         slow = slow.next
         fast = fast.next.next

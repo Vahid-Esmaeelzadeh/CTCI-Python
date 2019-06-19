@@ -1,17 +1,17 @@
 # region Question 8.8 (permutations dups)
+import copy
 
 def permutationsDup(str):
     freqTable = buildFreqTable(str)
-    result = permutaionsDupHelper(freqTable)
+    result = permutationsDupHelper(freqTable)
     return result
 
-
-def permutaionsDupHelper(freqTable):
+def permutationsDupHelper(freqTable):
     result = []
-    for i in freqTable.keys():
+    for i in freqTable:
         if freqTable[i] > 0:
-            freqTable[i] = freqTable[i] - 1
-            lst = permutaionsDupHelper(freqTable)
+            freqTable[i] -= 1
+            lst = permutationsDupHelper(copy.deepcopy(freqTable))
             for s in lst:
                 result.append(freqTable[i] + s)
     return result
@@ -20,8 +20,8 @@ def buildFreqTable(str):
     freqTable = dict()
     for c in str:
         if c not in freqTable:
-            freqTable[c] = 0;
-        freqTable[c] = freqTable[c] + 1
+            freqTable[c] = 0
+        freqTable[c] += 1
     return freqTable
 
 
@@ -29,5 +29,5 @@ def buildFreqTable(str):
 freqTable = buildFreqTable('baabcdd')
 print(freqTable)
 
-print(permutationsDup('abbccc'))
+print(permutationsDup('ab'))
 # endregion
