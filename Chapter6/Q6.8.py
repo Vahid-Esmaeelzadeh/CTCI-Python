@@ -70,4 +70,5 @@ def eggDrop_rcr(n, k, memo):
 
     return minVal + 1
 
-print(eggDrop_DP(2, 36))
+
+print(eggDrop_DP(2, 100))
