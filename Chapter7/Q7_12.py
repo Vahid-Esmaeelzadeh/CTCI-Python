@@ -65,7 +65,7 @@ class HashTable:
         return self.hash_code(key) % self.capacity
 
     def hash_code(self, key):
-        return len(str(key))
+        return hash(key)
 
     def __len__(self):
         return self.length
