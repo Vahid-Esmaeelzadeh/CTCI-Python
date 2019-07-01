@@ -62,10 +62,7 @@ class HashTable:
         return None
 
     def get_index_for_key(self, key):
-        return self.hash_code(key) % self.capacity
-
-    def hash_code(self, key):
-        return hash(key)
+        return hash(key) % self.capacity
 
     def __len__(self):
         return self.length

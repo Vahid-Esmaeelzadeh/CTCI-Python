@@ -15,5 +15,7 @@ def group_anagrams(lst):
 
 a = ["Vahid", "HAPPY", "laheE", "dihaV", "Elahe"]
 group_anagrams(a)
-
 print(a)
+
+a = [1, 2, 3, 4, 5, 6]
+print(''.join(str(x) for x in a))
