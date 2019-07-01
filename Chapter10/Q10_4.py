@@ -31,5 +31,17 @@ def bsearch(a, x, left, right):
 
     return -1
 
+
 lst = Listy([1, 4, 7, 9, 12, 14])
-print(search(lst, 9))
+print(search(lst, 14))
+
+print("\nbuilt-in search functions:\n")
+s = [1, 3, 4, 5, 5, 5]
+
+gen = (x for x in s if x < 4)
+print(next(gen))
+print(next(gen))
+
+print([x for x in s if x > 4])
+print([i for i, x in enumerate(s) if x == 5])
+
