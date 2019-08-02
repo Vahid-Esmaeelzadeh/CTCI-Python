@@ -1,6 +1,11 @@
+'''
+Return Kth to Last: Implement an algorithm to fnd the kth to last element of a singly linked list.
+'''
+
 from Common.common import *
 
-# region Question 2.2 (Return Kth to Last)
+
+# size-based solution
 def kLast_basic(lst:linkedList, k:int):
     _size = lst.size()
     i = _size - k
@@ -12,16 +17,21 @@ def kLast_basic(lst:linkedList, k:int):
 
     return current
 
+
+# recursive
 def kLast_recr(ll:linkedList, k:int):
     kLast_helper(ll.head, k)
 
-def kLast_helper(n: node, k: int):
+
+# two-pointer solution
+def kLast_helper(n: Node, k: int):
     if n is None:
         return 0
     index = kLast_helper(n.next, k) + 1
     if index == k:
         print(k, "th to the last node is ", n.data)
     return index
+
 
 def kLast(ll: linkedList, k:int):
     if k <= 0:
@@ -36,20 +46,21 @@ def kLast(ll: linkedList, k:int):
             return None
         runner = runner.next
         i += 1
-    while runner is not None:
+
+    while runner:
         current = current.next
         runner = runner.next
 
     return current.data
 
-ll = linkedList(node(1))
-ll.addLast(node(2))
-ll.addLast(node(3))
-ll.addLast(node(4))
-ll.addLast(node(5))
+
+ll = linkedList(Node(1))
+ll.addLast(Node(2))
+ll.addLast(Node(3))
+ll.addLast(Node(4))
+ll.addLast(Node(5))
 
 item = kLast_basic(ll, -1)
 kLast_recr(ll, 1)
 print(kLast(ll, 0))
 
-# endregion

@@ -1,3 +1,34 @@
+'''
+Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
+bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+'''
+
+
+def rotate90(mat: list):
+    n = len(mat)
+
+    if n == 0 or n != len(mat[0]):
+        return False
+
+    for layer in range(n // 2):
+        first = layer
+        last = n - 1 - layer
+
+        for i in range(first, last):
+            offset = i - first
+            top = mat[first][i]  # save top
+            # left -> top
+            mat[first][i] = mat[last-offset][first]
+            # bottom -> left
+            mat[last-offset][first] = mat[last][last-offset]
+            # right -> bottom
+            mat[last][last-offset] = mat[i][last]
+            # top -> right
+            mat[i][last] = top
+
+    return True
+
+
 def rotate(mat: list, degree: int):
     if degree % 90 != 0:
         print("Error in the value of degree! It should be a multiple of 90.\n")
@@ -9,17 +40,6 @@ def rotate(mat: list, degree: int):
 
     for i in range(degree // 90):
         rotate90(mat)
-
-
-def rotate90(mat: list):
-    n = len(mat)
-    for i in range(n // 2):
-        for j in range(i, n - i - 1, 1):
-            tmp = mat[i][j]
-            mat[i][j] = mat[n - j - 1][i]
-            mat[n - j - 1][i] = mat[n - i - 1][n - j - 1]
-            mat[n - i - 1][n - j - 1] = mat[j][n - i - 1]
-            mat[j][n - i - 1] = tmp
 
 
 def horizontalFlip(mat: list):
@@ -68,10 +88,10 @@ for x in b:
     print(x)
 
 
-print()
-rotate(a, -270)
-for x in a:
-    print(x)
+# print()
+# rotate(a, -270)
+# for x in a:
+#     print(x)
 
 print()
 rotate90(a)

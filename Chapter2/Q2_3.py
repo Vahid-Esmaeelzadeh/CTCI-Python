@@ -1,27 +1,35 @@
+'''
+Delete Middle Node: Implement an algorithm to delete a node in the middle (i.e., any node but
+the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
+that node.
+
+EXAMPLE
+lnput:the node c from the linked list a->b->c->d->e->f
+Result: nothing is returned, but the new linked list looks like a ->b->d->e->f
+'''
+
 from Common.common import *
 
-# region Question 2.3 (delete middle node)
-def deleteNode(n: node):
+
+def deleteNode(n: Node):
     if n is None or n.next is None:
         return False
 
-    #nextNode: node = n.next
     n.data = n.next.data
     n.next = n.next.next
 
     return True
 
-ll = linkedList(node(1))
-ll.addLast(node(2))
-ll.addLast(node(3))
-ll.addLast(node(4))
-ll.addLast(node(5))
+ll = linkedList(Node(1))
+ll.addLast(Node(2))
+ll.addLast(Node(3))
+ll.addLast(Node(4))
+ll.addLast(Node(5))
 
 ll.print()
 
 deleteNode(ll.head.next.next)
 ll.print()
-deleteNode(ll.head.next)
+deleteNode(ll.head.next.next)
 ll.print()
 
-# endregion

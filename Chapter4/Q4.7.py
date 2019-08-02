@@ -1,3 +1,7 @@
+'''
+Topological Sort
+'''
+
 import copy
 # region Solution 1
 def buildOrder(projects, dep) -> list:
@@ -38,6 +42,8 @@ def extractRootProjects(prjDict: dict):
     return projects - dependent_projects
 
 # endregion
+
+
 # region DFS-based solution
 # will be completed
 # endregion

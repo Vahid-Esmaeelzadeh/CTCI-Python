@@ -1,7 +1,15 @@
-class node:
+class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
+
+    def print_list(self):
+        temp = self
+        while temp:
+            print(str(temp.value) + " ", end='')
+            temp = temp.next
+        print()
+
 
 class linkedList:
     def __init__(self, head=None):
