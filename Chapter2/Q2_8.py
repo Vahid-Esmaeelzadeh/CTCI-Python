@@ -1,8 +1,21 @@
-# Question 2.8 (Loop Detection)
+'''
+Loop Detection: Given a circular linked list, implement an algorithm that returns the node at the
+beginning of the loop.
+
+DEFINITION
+Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so
+as to make a loop in the linked list.
+
+EXAMPLE
+Input: A - > B - > C - > D - > E - > C [the same C as earlier]
+Output: C
+'''
+
 class node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
+
 
 def loopDetection(lst: node):
     if lst is None:
@@ -34,6 +47,7 @@ def loopDetection2(head: node):
     if (fast is None) or (fast.next is None):
         return None
 
+    print("Cycle Length:",  calculate_cycle_length(slow))
     # move both pointers with the same pace and they will meet each other at loop start
     slow = head
     while slow != fast:
@@ -43,12 +57,24 @@ def loopDetection2(head: node):
     # return one of slow/fast
     return slow
 
+
+def calculate_cycle_length(slow):
+    current = slow
+    cycle_length = 0
+    while True:
+        current = current.next
+        cycle_length += 1
+        if current == slow:
+            break
+    return cycle_length
+
+
 lst = node(1)
 lst.next = node(2)
 lst.next.next = node(3)
 lst.next.next.next = node(4)
 lst.next.next.next.next = node(5)
-lst.next.next.next.next.next = lst.next.next.next
+lst.next.next.next.next.next = lst
 
 loopNode = loopDetection(lst)
 if loopNode is not None:

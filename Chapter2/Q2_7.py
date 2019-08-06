@@ -1,4 +1,11 @@
-# Question 2.7 (Intersection)
+'''
+Intersection: Given two (singly) linked lists, determine if the two lists intersect. Return the
+intersecting node. Note that the intersection is defined based on reference, not value. That is, if the
+kth node of the first linked list is the exact same node (by reference) as the jth node of the second
+linked list, then they are intersecting.
+'''
+
+
 class node:
     def __init__(self, data=None):
         self.data = data
@@ -71,7 +78,7 @@ list1.next.next.next.next.next.next = node(1)
 
 list2 = node(4)
 list2.next = node(6)
-list2.next.next = list1.next.next.next.next
+list2.next.next = list1.next.next.next
 
 
 intersectingNode = findIntersection(list1, list2)

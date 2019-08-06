@@ -165,3 +165,16 @@ sumLists_recursive(l1, l2).print()
 
 addLists(l2, l2).print()
 
+
+print("-----------------------------")
+num1 = Node(1)
+num1.next = Node(2)
+num1.next.next = Node(3)
+
+num2 = Node(0)
+num2.next = Node(1)
+#num2.next.next = Node(3)
+
+result = sum_lists(num1, num2)
+result.print_list()
+

@@ -1,3 +1,7 @@
+'''
+Palindrome: Implement a function to check if a linked list is a palindrome.
+'''
+
 from Common.common import *
 import copy
 # Question 2.6 (Palindrome)
@@ -17,7 +21,7 @@ def isPalindrome(ll: linkedList) -> bool:
         # i += 1
         current = current.next
 
-    if listSize % 2 == 1:  # skip the middle node
+    if listSize % 2 == 1:  # skip the middle Node
         current = current.next
 
     while current is not None:
@@ -29,9 +33,37 @@ def isPalindrome(ll: linkedList) -> bool:
         return True
 
 '''
+reverse and compare
+'''
+def is_palidrome1(head: Node):
+    rev = reverse_and_clone(head)
+    return is_equal(head, rev)
+
+
+def reverse_and_clone(node):
+    head = None
+    while node:
+        n = Node(node.data)
+        n.next = head
+        head = n
+        node = node.next
+
+    return head
+
+
+def is_equal(one: Node, two: Node):
+    while one and two:
+        if one.data != two.data:
+            return False
+        one = one.next
+        two = two.next
+
+    return (one is None) and (two is None)
+'''
 - We don't know the size of linkedlist
 - We use two pointers (slow and fast) 
 '''
+
 def isPalindrome2(ll: linkedList):
 
     slow = ll.head
@@ -43,7 +75,7 @@ def isPalindrome2(ll: linkedList):
         slow = slow.next
         fast = fast.next.next
 
-    if fast is not None:  # skip the middle node
+    if fast is not None:  # skip the middle Node
         slow = slow.next
 
     while slow is not None:
@@ -67,7 +99,7 @@ def isPalindrome_recr(ll: linkedList) -> bool:
         return True
 
     current = ll.head
-    prev = node()  # use the prev pointer to be able to remove the last node
+    prev = Node()  # use the prev pointer to be able to remove the last Node
     runner = ll.head
 
     while runner.next is not None:
@@ -82,13 +114,21 @@ def isPalindrome_recr(ll: linkedList) -> bool:
 
     return isPalindrome_recr(ll)
 
-l1 = linkedList(node(1))
-l1.add(node(2))
-l1.add(node(5))
-l1.add(node(2))
-l1.add(node(1))
+
+l1 = linkedList(Node(1))
+l1.add(Node(2))
+l1.add(Node(5))
+l1.add(Node(2))
+l1.add(Node(1))
 
 print(isPalindrome(l1))
 print(isPalindrome2(l1))
 print(isPalindrome_recr(copy.deepcopy(l1)))
 
+n = Node(1)
+n.next = Node(2)
+n.next.next = Node(3)
+n.next.next.next = Node(4)
+n.next.next.next.next = Node(1)
+
+print(is_palidrome1(n))

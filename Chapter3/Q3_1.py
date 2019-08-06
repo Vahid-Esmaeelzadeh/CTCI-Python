@@ -1,6 +1,9 @@
-# region Question 3.1 (Three in One)
-class fixedMultiStack:
+'''
+Three in One: Describe how you could use a single array to implement three stacks.
+'''
 
+# region fixed-size
+class fixedMultiStack:
     def __init__(self, stackSize: int):
         self.numberOfStacks = 3
         self.stackCapacity = stackSize
@@ -13,7 +16,6 @@ class fixedMultiStack:
             return
         self.sizes[stackNum] += 1
         self.values[self.indexOfTop(stackNum)] = value
-
 
     def pop(self, stackNum: int) -> int:
         if self.isEmpty(stackNum):
@@ -41,6 +43,9 @@ class fixedMultiStack:
     def indexOfTop(self, stackNum: int) -> int:
         return (stackNum * self.stackCapacity) + self.sizes[stackNum] - 1
 
+
+
+# endregion
 
 multiStack1 = fixedMultiStack(3)
 multiStack1.push(0, 1)

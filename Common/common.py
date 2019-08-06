@@ -6,7 +6,7 @@ class Node:
     def print_list(self):
         temp = self
         while temp:
-            print(str(temp.value) + " ", end='')
+            print(str(temp.data) + " ", end='')
             temp = temp.next
         print()
 
