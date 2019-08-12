@@ -28,7 +28,6 @@ def flipBitToWin(N: int) -> int:
         N = N >> 1
 
     oldZeroIndex = midZeroIndex
-    #midZeroIndex = newZeroIndex
     newZeroIndex = i
 
     if newZeroIndex is not None and oldZeroIndex is not None:
