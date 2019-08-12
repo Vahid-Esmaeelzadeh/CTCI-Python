@@ -15,11 +15,7 @@ y - bbbbbbbb_bbbbbbbb_bbbbbbbb_bbbbbbbb
     bbbbbbbb_bbbbbbbb_bbbbbbbb_bbbbbbbb
     bbbbbbbb_bbbbbbbb_bbbbbbbb_bbbbbbbb
 
-
-drawLine(byte[] screen, int width, int xl, int x2, int y)
 '''
-
-
 
 
 def drawLine(screen, width: int, x1: int, x2: int, y: int):

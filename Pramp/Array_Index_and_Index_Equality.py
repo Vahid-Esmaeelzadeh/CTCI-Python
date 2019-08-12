@@ -1,5 +1,6 @@
 '''
-Array Index & Element Equality
+Array Index & Element Equality === refer to Q8.3 (Magic Index)
+
 Given a sorted array arr of distinct integers, write a function indexEqualsValueSearch that returns the lowest index i
  for which arr[i] == i. Return -1 if there is no such index.
 '''
