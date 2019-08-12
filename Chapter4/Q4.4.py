@@ -1,8 +1,16 @@
+'''
+Check Balanced: Implement a function to check if a binary tree is balanced. For the purposes of
+this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any
+node never differ by more than one
+'''
+
+
 class BtreeNode:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
+
 
 # region Basic solution O(NlogN)
 def isBalancedTree(root: BtreeNode):
@@ -42,6 +50,7 @@ def checkHeight(n: BtreeNode):
         return "ERROR"
 
     return 1 + max(rightH, leftH)
+
 
 def isBalanced(n: BtreeNode):
     return checkHeight(n) != "ERROR"

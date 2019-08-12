@@ -1,3 +1,10 @@
+'''
+First Common Ancestor: Design an algorithm and write code to find the first common ancestor
+of two nodes in a binary tree. Avoid storing additional nodes in a data structure. NOTE: This is not
+necessarily a binary search tree.
+'''
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -47,7 +54,7 @@ def findDepth(n: Node):
     return d
 # endregion - -  -  - going
 
-# region Solution 2 - using parent - better performance - going up only from one node
+# region Solution 2 - using parents - better performance - going up only from one node
 def ancestor(root: Node, p: Node, q: Node):
     if (not covers(root, p)) or (not covers(root, q)):
         return None

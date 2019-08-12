@@ -1,8 +1,28 @@
 '''
 Topological Sort
+
+Build Order: You are given a list of projects and a list of dependencies (which is a list of pairs of
+projects, where the second project is dependent on the first project). All of a project's dependencies
+must be built before the project is. Find a build order that will allow the projects to be built. If there
+is no valid build order, return an error.
+
+EXAMPLE
+
+Input:
+projects: a, b, c, d, e, f
+dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+
+Output: f, e, a, b, d, c
+'''
+
+'''
+Cycle in a Directed Graph
+Find if a given Directed Graph has a cycle in it or not.
 '''
 
 import copy
+
+
 # region Solution 1
 def buildOrder(projects, dep) -> list:
     prjDict = convertToDict(projects, dep)
@@ -52,4 +72,5 @@ dep = [('a', 'd'), ('f', 'c'), ('d', 'c'), ('f', 'a'), ('f', 'b')]
 projects = ['a', 'b', 'c', 'd', 'e', 'f']
 
 print(buildOrder(copy.deepcopy(projects), dep))
+
 

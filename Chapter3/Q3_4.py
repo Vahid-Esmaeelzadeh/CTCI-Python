@@ -1,4 +1,8 @@
-# region Question 3.4 (Queue via Stacks)
+'''
+Queue via Stack: Implement a MyQueue class which implements a queue using two stacks.
+'''
+
+
 class stackQueue:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -46,4 +50,3 @@ print(stkQueue1.remove())
 print(stkQueue1.remove())
 print(stkQueue1.remove())
 
-# endregion

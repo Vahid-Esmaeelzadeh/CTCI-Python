@@ -1,11 +1,17 @@
+'''
+Validate BST: Implement a function to check if a binary tree is a binary search tree.
+'''
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
 
+
 def isBST(root: Node):
     return isBST_rcr(root, None, None)
+
 
 def isBST_rcr(root, _min, _max):
     if root is None:

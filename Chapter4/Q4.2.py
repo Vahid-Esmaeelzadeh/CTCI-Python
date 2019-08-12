@@ -1,3 +1,9 @@
+'''
+Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an
+algorithm to create a binary search tree with minimal height.
+'''
+
+
 class btreeNode:
     def __init__(self, data):
         self.data = data
@@ -28,6 +34,7 @@ def minHeight_helper(a, start, end):
 
     return n
 
+
 # review 1 code:
 def minTree(a):
     _size = len(a)
@@ -51,6 +58,5 @@ minT = minTree(a)
 preOrderPrint(resultTree)
 print("\n")
 preOrderPrint(minT)
-
-
 print("\n")
+print(a)

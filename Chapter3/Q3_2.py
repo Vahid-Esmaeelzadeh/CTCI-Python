@@ -1,5 +1,11 @@
-# region Question 3.2 (Stack min)
+'''
+Stack Min: How would you design a stack which, in addition to push and pop, has a function min
+which returns the minimum element? Push, pop and min should all operate in 0(1) time.
+'''
 import sys
+
+
+# region solution 1
 class stackWithMin:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -31,6 +37,10 @@ class stackWithMin:
             print("The stack is empty.")
             return
         return self.values[-1][0]
+# endregion
+
+
+# region optimal solution
 class stackWithMin_opt:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -66,6 +76,7 @@ class stackWithMin_opt:
             print("The stack is empty.")
             return
         return self.values[-1]
+# endregion
 
 
 stk1 = stackWithMin(10)
@@ -83,4 +94,4 @@ print(stk1.min(), " -- ", stk2.min())
 print(stk1.pop(), " -- ", stk2.pop())
 print(stk1.min(), " -- ", stk2.min())
 print(stk1.peek(), " -- ", stk2.peek())
-# endregion
+
