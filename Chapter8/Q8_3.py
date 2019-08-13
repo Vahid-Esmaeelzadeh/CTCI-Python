@@ -38,6 +38,7 @@ print(magicIndex(lst))
 def magicIndex2(lst: list):
     return magicIndex_helper2(lst, 0, len(lst) - 1)
 
+
 def magicIndex_helper2(lst: list, start, end):
     if start > end:
         return -1
@@ -48,14 +49,12 @@ def magicIndex_helper2(lst: list, start, end):
     if midIndex == midValue:
         return midIndex
 
-    leftIndex = min(midIndex - 1, midValue)
-    left = magicIndex_helper2(lst, start, leftIndex)
+    left = magicIndex_helper2(lst, start, min(midIndex - 1, midValue))
 
     if left >= 0:
         return left
 
-    rightIndex = max(midIndex + 1, midValue)
-    right = magicIndex_helper2(lst, rightIndex, end)
+    right = magicIndex_helper2(lst, max(midIndex + 1, midValue), end)
 
     return right
 

@@ -1,4 +1,8 @@
-#region Question 8.5 (recursive multiply)
+'''
+Recursive Multiply: Write a recursive function to multiply two positive integers without using
+the * operator (or / operator). You can use addition, subtraction, and bit shifting, but you should
+minimize the number of those operations.
+'''
 
 
 def recurMul (a, b):
@@ -25,7 +29,8 @@ def mul(a, b):
     else:
         return mul_recursive(b, a, 0)
 
-def mul_recursive(a, b, i): # b is the smaller number
+
+def mul_recursive(a, b, i):  # b is the smaller number
     if b == 0:
         return 0
 
@@ -38,4 +43,4 @@ def mul_recursive(a, b, i): # b is the smaller number
 
 print(recurMul(12345679, 72))
 print(mul(12345679, 45))
-#endregion
+
