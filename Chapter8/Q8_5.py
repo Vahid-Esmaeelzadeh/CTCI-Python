@@ -5,6 +5,7 @@ minimize the number of those operations.
 '''
 
 
+# region my solution - O(s)
 def recurMul (a, b):
     if a > b:
         return recurMulHelper(a, b, 0)
@@ -21,26 +22,32 @@ def recurMulHelper(a, b, i):
         temp = a
 
     return (temp << i) + recurMulHelper(a, b >> 1, i+1)
+# endregion
 
 
-def mul(a, b):
-    if a > b:
-        return mul_recursive(a, b, 0)
-    else:
-        return mul_recursive(b, a, 0)
+# region CTCI solution O(log s)
+def minProduct(a, b):
+    bigger = a if a > b else b
+    smaller = a if a < b else b
+    return minProductHelper(smaller, bigger)
 
 
-def mul_recursive(a, b, i):  # b is the smaller number
-    if b == 0:
+def minProductHelper(smaller, bigger):
+    if smaller == 0:
         return 0
+    if smaller == 1:
+        return bigger
 
-    if 1 & b == 1:
-        return (a << i) + mul_recursive(a, b >> 1, i + 1)
+    s = smaller >> 1
+    halfProd = minProductHelper(s, bigger)
+
+    if smaller % 2 == 0:
+        return halfProd + halfProd
     else:
-        return mul_recursive(a, b >> 1, i + 1)
+        return halfProd + halfProd + bigger
+# endregion
 
 
 
 print(recurMul(12345679, 72))
-print(mul(12345679, 45))
-
+print(minProduct(12345679, 63))
