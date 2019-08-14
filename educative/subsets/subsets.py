@@ -1,3 +1,9 @@
+'''
+Subsets
+Given a set with distinct elements, find all of its distinct subsets.
+'''
+
+
 def subsets(elements):
     result = [[]]
 

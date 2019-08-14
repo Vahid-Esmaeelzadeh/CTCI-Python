@@ -1,7 +1,10 @@
-from typing import List
+'''
+Permutations without Dups: [recursive approach]
+Write a method to compute all permutations of a string of unique characters.
+'''
 
-# region Question 8.7 (permutations)
-def permutations(s: str) -> List[str]:
+
+def permutations(s):
     if len(s) == 0:
         return [""]
 
@@ -20,4 +23,3 @@ def permutations(s: str) -> List[str]:
 strList = '\n'.join(permutations("aab"))
 print(strList)
 
-#endregion

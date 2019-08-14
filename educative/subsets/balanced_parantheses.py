@@ -7,7 +7,7 @@ class ParenthesesString:
         self.open_count = open_count
         self.close_count = close_count
 
-
+ 
 def generate_valid_parentheses(num):
     result = []
     queue = deque()

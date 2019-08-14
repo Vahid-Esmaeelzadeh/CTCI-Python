@@ -1,3 +1,8 @@
+'''
+Permutations - iterative (BFS approach)
+Given a set of distinct numbers, find all of its permutations.
+'''
+
 from collections import deque
 
 
