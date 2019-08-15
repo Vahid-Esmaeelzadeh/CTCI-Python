@@ -1,4 +1,15 @@
-# region Question 8.9 (parens)
+'''
+Parens: Implement an algorithm to print all valid (i.e., properly opened and closed) combinations
+of n pairs of parentheses.
+
+EXAMPLE
+
+Input: 3
+Output: ((()) ) , (()()) , (())(), ()(()) , () () ()
+
+'''
+
+# region basic recursive solution
 def parens1(n):
     if n == 1:
         return ['()']
@@ -18,7 +29,15 @@ def parens1(n):
                     result.append(newString)
 
     return result
-
-print('\n'.join(parens1(4)))
-
 # endregion
+
+
+# region optimal recursive solution
+# refer to Educative/Subsets/balanced_parentheses.py
+# endregion
+
+
+print("\n".join(parens1(4)))
+
+
+

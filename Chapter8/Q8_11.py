@@ -1,8 +1,14 @@
-# region Question 8.11 (coins)
+'''
+Coins: Given an infinite number of quarters (25 cents), dimes (1O cents), nickels (5 cents), and
+pennies (1 cent), write code to calculate the number of ways of representing n cents.
+'''
+
+
 def coins(n):
     if n <= 0:
         return 0
     return coinsHelper(n)
+
 
 def coinsHelper(n):
     if n == 0:
@@ -12,26 +18,27 @@ def coinsHelper(n):
     return coinsHelper(n - 1) + coinsHelper(n - 5) + coinsHelper(n - 10) + coinsHelper(n - 25)
 
 
-def count(S, m, n):
-    # If n is 0 then there is 1
+def count(S, coins_num, total):
+    # If total is 0 then there is 1
     # solution (do not include any coin)
-    if (n == 0):
+    if total == 0:
         return 1
 
-    # If n is less than 0 then no
+    # If total is less than 0 then no
     # solution exists
-    if (n < 0):
-        return 0;
+    if total < 0:
+        return 0
 
-    # If there are no coins and n
+    # If there are no coins and total
     # is greater than 0, then no
     # solution exist
-    if (m <= 0 and n >= 1):
+    if coins_num <= 0 and total >= 1:
         return 0
 
     # count is sum of solutions
-    # (i) excluding S[m-1] (ii) including S[m-1]
-    return count(S, m - 1, n) + count(S, m, n - S[m - 1]);
+    # (i) excluding S[coins_num-1] (ii) including S[coins_num-1]
+    return count(S, coins_num - 1, total) + count(S, coins_num, total - S[coins_num - 1])
+
 
 def count_DP(S, m, n, memo):
     # If n is 0 then there is 1
@@ -61,9 +68,11 @@ def count_DP(S, m, n, memo):
 
 
 arr = [25, 10, 5, 1]
-m = len(arr)
-n = 120
+coins_num = len(arr)
+total = 120
 memo = dict()
-print(count(arr, m, n))
-print(count_DP(arr, m, n, memo))
-# endregion
+
+print(count(arr, coins_num, total))
+print(count_DP(arr, coins_num, total, memo))
+
+# FINAL REVIEW NEEDED
