@@ -1,5 +1,16 @@
+'''
+Sparse Search: Given a sorted array of strings that is interspersed with empty strings, write a
+method to find the location of a given string.
+
+EXAMPLE
+Input: ball, {"at", "", "", "", "ball", "", "", "car", "", "", "dad", "", ""}
+Output: 4
+'''
+
+
 def sparse_search(a, s):
     return sparse_search_rcr(a, s, 0, len(a) - 1)
+
 
 def sparse_search_rcr(a, s, left, right):
     if left > right:
@@ -32,6 +43,7 @@ def calc_mid(a, left, right):
         if mid + i <= right and a[mid + i] != "":
             return mid + i
         i += 1
+
 
 arr = ["aaa", "", "", "", "", "", "bbb", "", "", "ccc", "", "ddd", "", "", "", "", "", "eee", "", ""]
 print(sparse_search(arr, "eee"))

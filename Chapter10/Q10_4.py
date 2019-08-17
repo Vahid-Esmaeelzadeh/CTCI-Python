@@ -1,3 +1,12 @@
+'''
+Sorted Search, No Size: You are given an array-like data structure Listy which lacks a size
+method. It does, however, have an elementAt(i) method that returns the element at index i in
+0(1) time. If i is beyond the bounds of the data structure, it returns -1. (For this reason, the data
+structure only supports positive integers.) Given a Listy which contains sorted, positive integers,
+fnd the index at which an element x occurs. If x occurs multiple times, you may return any index.
+'''
+
+
 class Listy:
     def __init__(self, lst):
         self._list = lst
@@ -14,6 +23,7 @@ def search(a: Listy, x):
     while a.element_at(index) != -1 and a.element_at(index) < x:
         index *= 2
     return bsearch(a, x, index // 2, index)
+
 
 def bsearch(a, x, left, right):
     mid = -1

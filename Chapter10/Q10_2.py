@@ -1,3 +1,9 @@
+'''
+Group Anagrams: Write a method to sort an array ot strings so that all tne anagrams are next to
+each other.
+'''
+
+
 def group_anagrams(lst):
     hash_map = dict()
     for x in lst:

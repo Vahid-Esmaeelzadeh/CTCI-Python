@@ -17,6 +17,8 @@ def find_pairs_with_given_difference(arr, k):
     return result
 
 
+
+
 a = [0, -1, -2, 2, 1]
 k = 1
 

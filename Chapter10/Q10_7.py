@@ -1,3 +1,16 @@
+'''
+Missing Int: Given an input file with four billion non-negative integers, provide an algorithm to
+generate an integer that is not contained in the file. Assume you have 1 GB of memory available for
+this task.
+
+FOLLOW UP
+What if you have only 1O MB of memory? Assume that all the values are distinct and we now have
+no more than one billion non-negative integers.
+
+Working with Files
+Working with random functions
+'''
+
 from random import randint
 
 
@@ -12,6 +25,7 @@ def create_file(filename: str, total_num: int):
         if k == total_num:
             f.close()
             break
+
 
 # region part 1
 def find_unused_number(filename: str):
