@@ -1,3 +1,15 @@
+'''
+Maximum CPU Load
+
+We are given a list of Jobs. Each job has a Start time, an End time, and a CPU load when it is running.
+Our goal is to find the maximum CPU load at any time if all the jobs are running on the same machine.
+
+Example 1:
+
+Jobs: [[1,4,3], [2,5,4], [7,9,6]]
+Output: 7
+'''
+
 from heapq import *
 
 
@@ -8,26 +20,27 @@ class job:
         self.cpu_load = cpu_load
 
     def __lt__(self, other):
+        # min heap based on job.end
         return self.end < other.end
 
 
 def find_max_cpu_load(jobs):
+    # sort the jobs by start time
     jobs.sort(key=lambda x: x.start)
-
-    load = 0
-    max_load = 0
+    max_cpu_load, current_cpu_load = 0, 0
     min_heap = []
 
     for j in jobs:
-        while len(min_heap) > 0 and j.start > min_heap[0].end:
-            load -= min_heap[0].cpu_load
+        # remove all the jobs that have ended
+        while len(min_heap) > 0 and j.start >= min_heap[0].end:
+            current_cpu_load -= min_heap[0].cpu_load
             heappop(min_heap)
-
+        # add the current job into min_heap
         heappush(min_heap, j)
-        load += j.cpu_load
-        max_load = max(load, max_load)
+        current_cpu_load += j.cpu_load
+        max_cpu_load = max(max_cpu_load, current_cpu_load)
+    return max_cpu_load
 
-    return max_load
 
 def main():
     print("Maximum CPU load at any time: " + str(find_max_cpu_load([job(1, 4, 3), job(2, 5, 4), job(7, 9, 6)])))

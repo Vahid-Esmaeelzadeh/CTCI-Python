@@ -1,7 +1,7 @@
 '''
-Reverse every K-element Sub-list
+Reverse alternating K-element Sub-list
 
-Given the head of a LinkedList and a number ‘k’, reverse every ‘k’ sized sub-list starting from the head.
+Given the head of a LinkedList and a number ‘k’, reverse every alternating ‘k’ sized sub-list starting from the head.
 
 If, in the end, you are left with a sub-list with less than ‘k’ elements, reverse it too.
 '''
@@ -20,7 +20,7 @@ class Node:
         print()
 
 
-def reverse_every_k_elements(head, k):
+def reverse_alternate_k_elements(head, k):
     if k <= 1 or head is None:
         return head
 
@@ -30,8 +30,10 @@ def reverse_every_k_elements(head, k):
         # after reversing the LinkedList 'current' will become the last node of the sub-list
         last_node_of_sub_list = current
         next = None  # will be used to temporarily store the next node
+
+        # reverse 'k' nodes
         i = 0
-        while current is not None and i < k:  # reverse 'k' nodes
+        while current is not None and i < k:
             next = current.next
             current.next = previous
             previous = current
@@ -47,9 +49,15 @@ def reverse_every_k_elements(head, k):
         # connect with the next part
         last_node_of_sub_list.next = current
 
+        # skip 'k' nodes ##############################
+        i = 0
+        while current is not None and i < k:
+            previous = current
+            current = current.next
+            i += 1
+
         if current is None:
             break
-        previous = last_node_of_sub_list
     return head
 
 
@@ -62,10 +70,11 @@ def main():
     head.next.next.next.next.next = Node(6)
     head.next.next.next.next.next.next = Node(7)
     head.next.next.next.next.next.next.next = Node(8)
+    head.next.next.next.next.next.next.next.next = Node(9)
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_every_k_elements(head, 3)
+    result = reverse_alternate_k_elements(head, 3)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
 

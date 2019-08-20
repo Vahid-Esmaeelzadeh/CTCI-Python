@@ -64,6 +64,9 @@ reverse linkedlist
 
 
 def reverse(head):
+    if head is None or head.next is None:
+        return head
+
     prev = None
     while head:
         next = head.next

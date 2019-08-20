@@ -1,3 +1,10 @@
+'''
+Reverse a Sub-list in a LinkedList
+
+Given the head of a LinkedList and two positions ‘p’ and ‘q’, reverse the LinkedList from position ‘p’ to ‘q’.
+'''
+
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -5,7 +12,7 @@ class Node:
 
     def print_list(self):
         temp = self
-        while temp:
+        while temp is not None:
             print(temp.value, end=" ")
             temp = temp.next
         print()
@@ -17,8 +24,8 @@ def reverse_sub_list(head, p, q):
 
     # after skipping 'p-1' nodes, current will point to 'p'th node
     current, previous = head, None
-    i = 1
-    while current is not None and i < p:
+    i = 0
+    while current is not None and i < p - 1:
         previous = current
         current = current.next
         i += 1
@@ -30,9 +37,9 @@ def reverse_sub_list(head, p, q):
     last_node_of_sub_list = current
     next = None  # will be used to temporarily store the next node
 
-    # i = 0
+    i = 0
     # reverse nodes between 'p' and 'q'
-    while current is not None and i <= q:
+    while current is not None and i < q - p + 1:
         next = current.next
         current.next = previous
         previous = current
@@ -61,7 +68,7 @@ def main():
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_sub_list(head, 2, 5)
+    result = reverse_sub_list(head, 2, 4)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
 

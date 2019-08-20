@@ -1,3 +1,16 @@
+'''
+Minimum Meeting Rooms
+
+Given a list of intervals representing the start and end time of ‘N’ meetings, find the minimum number of rooms
+required to hold all the meetings.
+
+Example 1:
+Meetings: [[1,4], [2,5], [7,9]]
+Output: 2
+Explanation: Since [1,4] and [2,5] overlap, we need two rooms to hold these two meetings. [7,9] can
+occur in any of the two rooms later.
+'''
+
 from heapq import *
 
 
@@ -12,31 +25,14 @@ class Meeting:
 
 
 def min_meeting_rooms(meetings):
-    #meetings.sort(key=lambda x: x.end - x.start, reverse=True)
-    done = [False] * len(meetings)
-
-    room_count = 0
-    for i in range(len(meetings)):
-        if done[i] is False:
-            room_count += 1
-            done[i] = True
-
-            for j in range(i + 1, len(meetings)):
-                if meetings[i].start >= meetings[j].end or meetings[j].start >= meetings[i].end:
-                    done[j] = True
-
-    return room_count
-
-
-def min_meeting_rooms2(meetings):
     # sort the meetings by start time
-    meetings.sort(key=lambda x: x.start)
+    meetings.sort(key=lambda x: x.start)  # meetings.sort(key=lambda x: x[0])
 
     minRooms = 0
     minHeap = []
     for meeting in meetings:
         # remove all the meetings that have ended
-        while(len(minHeap) > 0 and meeting.start >= minHeap[0].end):
+        while len(minHeap) > 0 and meeting.start >= minHeap[0].end:
             heappop(minHeap)
         # add the current meeting into min_heap
         heappush(minHeap, meeting)
@@ -52,11 +48,5 @@ def main():
     print("Minimum meeting rooms required: " + str(min_meeting_rooms([Meeting(1, 4), Meeting(2, 3), Meeting(3, 6)])))
     print("Minimum meeting rooms required: " + str(min_meeting_rooms([Meeting(4, 5), Meeting(2, 3), Meeting(2, 4), Meeting(3, 5)])))
     print()
-    print("Minimum meeting rooms required: " + str(min_meeting_rooms2([Meeting(4, 5), Meeting(2, 3), Meeting(2, 4), Meeting(3, 5)])))
-    print("Minimum meeting rooms required: " + str(min_meeting_rooms2([Meeting(1, 4), Meeting(2, 5), Meeting(7, 9)])))
-    print("Minimum meeting rooms required: " + str(min_meeting_rooms2([Meeting(6, 7), Meeting(2, 4), Meeting(8, 12)])))
-    print("Minimum meeting rooms required: " + str(min_meeting_rooms2([Meeting(1, 4), Meeting(2, 3), Meeting(3, 6)])))
-    print("Minimum meeting rooms required: " + str(min_meeting_rooms2([Meeting(4, 5), Meeting(2, 3), Meeting(2, 4), Meeting(3, 5)])))
-
 
 main()

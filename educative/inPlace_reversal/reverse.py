@@ -1,3 +1,8 @@
+'''
+Reverse a LinkedList
+'''
+
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -12,16 +17,16 @@ class Node:
 
 
 def reverse(head):
-    prv = None
-    current = head
+    if head is None or head.next is None:
+        return head
 
-    while current is not None:
-        nxt = current.next
-        current.next = prv
-        prv = current
-        current = nxt
-
-    return prv
+    previous, current, next = None, head, None
+    while current:
+        next = current.next  # temporarily store the next node
+        current.next = previous  # reverse the current node
+        previous = current  # before we move to the next node, point previous to the current node
+        current = next  # move on the next node
+    return previous
 
 
 def main():

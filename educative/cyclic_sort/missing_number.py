@@ -1,20 +1,35 @@
+'''
+Find the Missing Number
+
+We are given an array containing ‘n’ distinct numbers taken from the range 0 to ‘n’.
+Since the array has only ‘n’ numbers out of the total ‘n+1’ numbers, find the missing number.
+
+Example 1:
+
+Input: [4, 0, 3, 1]
+Output: 2
+'''
+
+
 def find_missing_number(nums):
-    n = len(nums)
-    i = 0
+    i, n = 0, len(nums)
     while i < n:
-        if nums[i] < n and nums[i] != nums[nums[i]]:
-            nums[nums[i]], nums[i] = nums[i], nums[nums[i]]
+        j = nums[i]
+        if j < n and nums[i] != nums[j]:
+            nums[i], nums[j] = nums[j], nums[i]  # swap
         else:
             i += 1
 
-    for k in range(n):
-        if nums[k] != k:
-            return k
+    # find the first number missing from its index, that will be our required number
+    for i in range(n):
+        if nums[i] != i:
+            return i
 
     return n
 
+
 def main():
-    print(find_missing_number([2, 0, 3, 1]))
+    print(find_missing_number([4, 0, 3, 1]))
     print(find_missing_number([8, 3, 5, 2, 4, 6, 0, 1]))
 
 
