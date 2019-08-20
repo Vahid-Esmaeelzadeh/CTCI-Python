@@ -1,3 +1,16 @@
+'''
+Insert Interval
+
+Given a list of non-overlapping intervals sorted by their start time, insert a given interval at
+the correct position and merge all necessary intervals to produce a list that has only mutually exclusive intervals.
+
+Example 1:
+
+Input: Intervals=[[1,3], [5,7], [8,12]], New Interval=[4,6]
+Output: [[1,3], [4,7], [8,12]]
+'''
+
+
 def insert(intervals, new_interval):
     merged = []
     i, start, end = 0, 0, 1
@@ -24,25 +37,9 @@ def insert(intervals, new_interval):
     return merged
 
 
-def f(n):
-    if n <= 0:
-        return 0
-    return n + f(int(n/2))
-
-
 def main():
     print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 6])))
     print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 10])))
     print("Intervals after inserting the new interval: " + str(insert([[2, 3], [5, 7]], [1, 4])))
     print("Intervals after inserting the new interval: " + str(insert([[2, 3], [5, 7]], [1, 10])))
-
-    x = sum([x*x for x in [1, 2, 3]])
-    print(x)
-
-    print(f(4))
-
-    x = {'foo': 'bar'}
-    y = {'baz': x}
-    z = y['baz']['foo']
-    print(z)
 main()

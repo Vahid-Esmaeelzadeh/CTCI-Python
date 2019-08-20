@@ -1,3 +1,20 @@
+'''
+Palindrome LinkedList (medium)
+Given the head of a Singly LinkedList, write a method to check if the LinkedList is a palindrome or not.
+
+Your algorithm should use constant space and the input LinkedList should be in the original form once the algorithm
+is finished. The algorithm should have O(N) time complexity where ‘N’ is the number of nodes in the LinkedList.
+
+Example 1:
+Input: 2 -> 4 -> 6 -> 4 -> 2 -> null
+Output: true
+
+Example 2:
+Input: 2 -> 4 -> 6 -> 4 -> 2 -> 2 -> null
+Output: false
+'''
+
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -9,30 +26,6 @@ class Node:
             print(str(temp.value) + " ", end='')
             temp = temp.next
         print()
-
-
-# using stack and slow and fast pointers
-def is_palindromic_linked_list(head):
-    slow = head
-    fast = head
-
-    items = []
-    while fast and fast.next:
-        items.append(slow.value)
-        slow = slow.next
-        fast = fast.next.next
-    # Now, slow is the middle of list
-
-    # move it one node  forward if the length of list is odd
-    if fast:
-        slow = slow.next
-
-    while slow:
-        if items.pop() != slow.value:
-            return False
-        slow = slow.next
-
-    return True
 
 
 # without stack - space order = O(1)
@@ -65,6 +58,10 @@ def is_palindromic_linked_list2(head):
 
     return False
 
+'''
+reverse linkedlist
+'''
+
 
 def reverse(head):
     prev = None
@@ -74,6 +71,30 @@ def reverse(head):
         prev = head
         head = next
     return prev
+
+
+# using stack and slow and fast pointers
+def is_palindromic_linked_list(head):
+    slow = head
+    fast = head
+
+    items = []
+    while fast and fast.next:
+        items.append(slow.value)
+        slow = slow.next
+        fast = fast.next.next
+    # Now, slow is the middle of list
+
+    # move it one node  forward if the length of list is odd
+    if fast:
+        slow = slow.next
+
+    while slow:
+        if items.pop() != slow.value:
+            return False
+        slow = slow.next
+
+    return True
 
 
 head = Node(2)

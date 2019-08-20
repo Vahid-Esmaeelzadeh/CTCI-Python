@@ -1,5 +1,5 @@
 '''
-Remove Duplicates
+Remove Duplicates in sorted array
 
 Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space;
 after removing the duplicates in-place return the new length of the array.
@@ -24,6 +24,20 @@ def remove_duplicates(arr):
         runner += 1
 
     return current + 1
+
+
+def remove_duplicates1(arr):
+    # index of the next non-duplicate element
+    next_non_duplicate = 1
+
+    i = 1
+    while i < len(arr):
+        if arr[next_non_duplicate - 1] != arr[i]:
+            arr[next_non_duplicate] = arr[i]
+            next_non_duplicate += 1
+        i += 1
+
+    return next_non_duplicate
 
 
 a = [2, 3, 3, 3, 6, 9, 9, 9, 9, 10, 10, 11, 11, 12]

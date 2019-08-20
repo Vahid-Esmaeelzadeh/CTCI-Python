@@ -1,3 +1,16 @@
+'''
+Merge Intervals
+
+Given a list of intervals, merge all the overlapping intervals to produce a list that has
+only mutually exclusive intervals.
+
+Example 1:
+
+Intervals: [[1,4], [2,5], [7,9]]
+Output: [[1,5], [7,9]]
+'''
+
+
 class Interval:
     def __init__(self, start, end):
         self.start = start

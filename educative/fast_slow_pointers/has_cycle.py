@@ -1,7 +1,8 @@
 '''
-LinkedList Cycle
+LinkedList Cycle, Cycle length, start of cycle
 Given the head of a Singly LinkedList, write a function to determine if the LinkedList has a cycle in it or not.
 '''
+
 
 class Node:
     def __init__(self, value, next=None):
@@ -55,6 +56,7 @@ def calculate_cycle_length(slow):
         if current == slow:
             break
     return cycle_length
+
 
 head = Node(1)
 head.next = Node(2)
