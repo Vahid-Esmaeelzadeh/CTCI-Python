@@ -1,7 +1,25 @@
+'''
+Binary Tree Path Sum
+
+Given a binary tree and a number ‘S’, find if the tree has a path from root-to-leaf such that the sum of all the node
+values of that path equals ‘S’.
+'''
+
+
 class TreeNode:
     def __init__(self, value, left=None, right=None):
         self.value = value
         self.left, self.right = left, right
+
+
+def has_path_with_sum(root, s):
+    if root is None:
+        return False
+
+    if root.left is None and root.right is None:
+        return root.value == s
+
+    return has_path_with_sum(root.left, s - root.value) or has_path_with_sum(root.right, s - root.value)
 
 
 def dfs_print(root):
@@ -10,24 +28,6 @@ def dfs_print(root):
     print(root.value, end=" ")
     dfs_print(root.left)
     dfs_print(root.right)
-
-
-def has_path_with_sum(root, s):
-    if root is None:
-        return False
-
-    if root.value == s and root.left is None and root.right is None:
-        return True
-
-    return has_path_with_sum(root.left, s - root.value) or has_path_with_sum(root.right, s - root.value)
-
-    # if root is None and s == 0:
-    #     return True
-    #
-    # if root:
-    #     return has_path_with_sum(root.left, s - root.value) or has_path_with_sum(root.right, s - root.value)
-    #
-    # return False
 
 
 root = TreeNode(12)

@@ -1,9 +1,28 @@
+'''
+Find the Median of a Number Stream
+
+Design a class to calculate the median of a number stream. The class should have the following two methods:
+
+insertNum(int num): stores the number in the class
+findMedian(): returns the median of all numbers inserted in the class
+If the count of numbers inserted in the class is even, the median will be the average of the middle two numbers.
+
+Example 1:
+1. insertNum(3)
+2. insertNum(1)
+3. findMedian() -> output: 2
+4. insertNum(5)
+5. findMedian() -> output: 3
+6. insertNum(4)
+7. findMedian() -> output: 3.5
+'''
+
 from heapq import *
 
 
 class MedianOfStream:
-    max_heap = []  # to store the first half of numbers
-    min_heap = []  # to store the second half of numbers
+    max_heap = []  # to store the first half of numbers -- smaller half
+    min_heap = []  # to store the second half of numbers -- bigger half
 
     def insert_num(self, num):
         if not self.max_heap or num < -self.max_heap[0]:

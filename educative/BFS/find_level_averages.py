@@ -1,3 +1,10 @@
+'''
+Level Averages in a Binary Tree
+Level Max in a Binary Tree
+
+Given a binary tree, populate an array to represent the averages of all of its levels.
+'''
+
 from collections import deque
 
 
@@ -17,11 +24,11 @@ def find_level_averages(root):
 
     while queue:
         level_size = len(queue)
-        level_sum = 0
+        level_sum = 0  # level_max = 0
 
         for _ in range(level_size):
             n = queue.popleft()
-            level_sum += n.value
+            level_sum += n.value  # level_max = max(level_max, n.value)
 
             if n.left:
                 queue.append(n.left)

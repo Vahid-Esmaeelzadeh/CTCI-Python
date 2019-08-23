@@ -1,3 +1,12 @@
+'''
+Tree BFS - Level Order Traversal
+
+Given a binary tree, populate an array to represent its level-by-level traversal.
+You should populate the values of all nodes of each level from left to right in separate sub-arrays.
+
+it should return a list of lists
+'''
+
 from collections import deque
 
 
@@ -21,6 +30,7 @@ def print_bfs_traverse(root):
     print()
 
 
+# Level Order Traversal
 def traverse(root):
     result = []
     if root is None:
@@ -46,6 +56,7 @@ def traverse(root):
     return result
 
 
+# Reverse Level Order Traversal
 def traverse_inverse(root):
     result = deque()
     if root is None:

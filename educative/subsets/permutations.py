@@ -13,12 +13,12 @@ def permutations(nums):
     result = deque()
     result.append([nums[0]])
 
-    for n in range(1, len(nums)):
+    for new_num in range(1, len(nums)):
         temp_len = len(result)
         for _ in range(temp_len):
             item = result.popleft()
             for i in range(len(item) + 1):
-                result.append(item[:i] + [nums[n]] + item[i:])
+                result.append(item[:i] + [nums[new_num]] + item[i:])
 
     return list(result)
 

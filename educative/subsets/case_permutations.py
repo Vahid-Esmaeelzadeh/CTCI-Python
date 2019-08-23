@@ -1,39 +1,37 @@
-from collections import deque
+'''
+String Permutations by changing case
+
+Given a string, find all of its permutations preserving the character sequence but changing case.
+
+Example 1:
+Input: "ad52"
+Output: "ad52", "Ad52", "aD52", "AD52"
+
+'''
 
 
-def case_permutations(in_str: str):
-    result = deque()
-    result.append("")
-
-    for i in range(len(in_str)):
-        temp_len = len(result)
-        for _ in range(temp_len):
-            s = result.popleft()
-            if in_str[i].isdigit():
-                result.append(s + in_str[i])
-            elif in_str[i].islower() or in_str.isupper():
-                result.append(s + in_str[i].lower())
-                result.append(s + in_str[i].upper())
-
-    return list(result)
-
-
-def case_permutations2(in_str: str):
-    result = []
-    result.append(in_str)
-
-    for i in range(len(in_str)):
-        if in_str[i].isalpha():
-            n = len(result)
+def find_letter_case_string_permutations(str):
+    permutations = []
+    permutations.append(str)
+    # process every character of the string one by one
+    for i in range(len(str)):
+        if str[i].isalpha():  # only process characters, skip digits
+            # we will take all existing permutations and change the letter case appropriately
+            n = len(permutations)
             for j in range(n):
-                characters = list(result[j])
-                characters[i] = characters[i].swapcase()
-                result.append(''.join(characters))
+                chs = list(permutations[j])  # we have to use list(.) because string is immutable and we need changing
+                # if the current character is in upper case, change it to lower case or vice versa
+                chs[i] = chs[i].swapcase()
+                permutations.append(''.join(chs))
 
-    return result
-
-
-print(case_permutations("ab52c"))
-print(case_permutations2("ab52c"))
+    return permutations
 
 
+def main():
+    print("String permutations are: " +
+          str(find_letter_case_string_permutations("ad52")))
+    print("String permutations are: " +
+          str(find_letter_case_string_permutations("ab7c")))
+
+
+main()

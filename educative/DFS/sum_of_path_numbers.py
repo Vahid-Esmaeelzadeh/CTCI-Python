@@ -1,29 +1,46 @@
+'''
+Sum of Path Numbers
+
+Given a binary tree where each node can only have a digit (0-9) value, each root-to-leaf path will represent a number.
+Find the total sum of all the numbers represented by all paths.
+'''
+
+
 class TreeNode:
-    def __init__(self, value, left=None, right=None):
-        self.value = value
-        self.left, self.right = left, right
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 def find_sum_of_path_numbers(root):
-    return find_sum_of_path_numbers_recursive(root, 0)
+    return find_root_to_leaf_path_numbers(root, 0)
 
 
-def find_sum_of_path_numbers_recursive(root, s):
-    if root is None:
+def find_root_to_leaf_path_numbers(currentNode, pathSum):
+    if currentNode is None:
         return 0
 
-    s = s * 10 + root.value
+    # calculate the path number of the current node
+    pathSum = 10 * pathSum + currentNode.val
 
-    if root.left is None and root.right is None:
-        return s
+    # if the current node is a leaf, return the current path sum
+    if currentNode.left is None and currentNode.right is None:
+        return pathSum
 
-    return find_sum_of_path_numbers_recursive(root.left, s) + find_sum_of_path_numbers_recursive(root.right, s)
+    # traverse the left and the right sub-tree
+    return find_root_to_leaf_path_numbers(currentNode.left, pathSum) + \
+        find_root_to_leaf_path_numbers(currentNode.right, pathSum)
 
 
-root = TreeNode(1)
-root.left = TreeNode(0)
-root.right = TreeNode(1)
-root.left.left = TreeNode(1)
-root.right.left = TreeNode(6)
-root.right.right = TreeNode(5)
-print("Total Sum of Path Numbers: " + str(find_sum_of_path_numbers(root)))
+def main():
+    root = TreeNode(1)
+    root.left = TreeNode(0)
+    root.right = TreeNode(1)
+    root.left.left = TreeNode(1)
+    root.right.left = TreeNode(6)
+    root.right.right = TreeNode(5)
+    print("Total Sum of Path Numbers: " + str(find_sum_of_path_numbers(root)))
+
+
+main()

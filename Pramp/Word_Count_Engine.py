@@ -7,6 +7,7 @@ def word_count_engine1(document: str):
     table = {}  # (word, occurrence)
     temp = []
 
+    # maximum_occurrence to use for number of buckets in bucket sort
     maximum_occurrence = 0
 
     for c in document:
@@ -23,18 +24,20 @@ def word_count_engine1(document: str):
         table[''.join(temp)] = table.get(''.join(temp), 0) + 1
         maximum_occurrence = max(table[''.join(temp)], maximum_occurrence)
 
+    # we make our buckets
     result = [[] for _ in range(maximum_occurrence)]
 
+    # fill the buckets
     for x in table:
         result[table[x]-1].append(x)
 
     final_res = []
+    # we know the last bucket has maximum occurrence and ...
     for i in range(len(result)-1, -1, -1):
         for x in result[i]:
             final_res.append([x, str(table[x])])
 
     return final_res
-
 
 
 

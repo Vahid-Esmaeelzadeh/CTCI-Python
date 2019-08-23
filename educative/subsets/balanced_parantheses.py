@@ -1,6 +1,7 @@
 '''
 Parens:
 
+For a given number ‘N’, write a function to generate all combination of ‘N’ pairs of balanced parentheses.
 Valid balanced parentheses
 '''
 
@@ -18,19 +19,22 @@ class ParenthesesString:
 def generate_valid_parentheses(num):
     result = []
     queue = deque()
-    queue.append(ParenthesesString())
-
+    queue.append(ParenthesesString("", 0, 0))
     while queue:
         ps = queue.popleft()
+        # if we've reached the maximum number of open and close parentheses, add to the result
         if ps.open_count == num and ps.close_count == num:
             result.append(ps.s)
         else:
-            if ps.open_count < num:
+            if ps.open_count < num:  # if we can add an open parentheses, add it
                 queue.append(ParenthesesString(ps.s + "(", ps.open_count + 1, ps.close_count))
-            if ps.open_count > ps.close_count:
+
+            if ps.open_count > ps.close_count:  # if we can add a close parentheses, add it
                 queue.append(ParenthesesString(ps.s + ")", ps.open_count, ps.close_count + 1))
 
     return result
+
+
 # endregion
 
 

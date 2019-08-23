@@ -1,26 +1,51 @@
+'''
+Maximize Capital
+
+Given a set of investment projects with their respective profits, we need to find the most profitable projects.
+We will be given an initial capital and allowed to invest only in a fixed number of projects. Our goal is to choose
+projects that give us the maximum profit.
+
+We can start an investment project only when we have the required capital. Once a project is selected, we can assume
+that its profit has become our capital.
+
+Example 1:
+Input: Project Capitals=[0,1,2], Project Profits=[1,2,3], Initial Capital=1, Number of Projects=2
+Output: 6
+Explanation:
+With initial capital of ‘1’, we will start the second project which will give us profit of ‘2’.
+Once we selected our first project, our total capital will become 3 (profit + initial capital).
+With ‘3’ capital, we will select the third project, which will give us ‘3’ profit.
+After the completion of the two projects, our total capital will be 6 (1+2+3).
+'''
+
 from heapq import *
 
 
 def find_maximum_capital(capital, profits, numberOfProjects, initialCapital):
-    max_heap_profit = []
-    min_heap_capital = []
+    minCapitalHeap = []
+    maxProfitHeap = []
 
-    available_capital = initialCapital
+    # insert all project capitals to a min-heap
+    for i in range(0, len(profits)):
+        heappush(minCapitalHeap, (capital[i], i))
 
-    for i in range(len(capital)):
-        heappush(min_heap_capital, (capital[i], i))
-
+    # let's try to find a total of 'numberOfProjects' best projects
+    availableCapital = initialCapital
     for _ in range(numberOfProjects):
-        while min_heap_capital and available_capital >= min_heap_capital[0][0]:
-            c, i = heappop(min_heap_capital)
-            heappush(max_heap_profit, (-profits[i], i))
+        # find all projects that can be selected within the available capital and insert them in a max-heap
+        while minCapitalHeap and minCapitalHeap[0][0] <= availableCapital:
+            capital, i = heappop(minCapitalHeap)
+            heappush(maxProfitHeap, (-profits[i], i))
 
-        if not max_heap_profit:
+        # terminate if we are not able to find any project that can be completed within the available capital
+        if not maxProfitHeap:
             break
 
-        available_capital += -heappop(max_heap_profit)[0]
+        # select the project with the maximum profit
+        availableCapital += -heappop(maxProfitHeap)[0]
 
-    return available_capital
+    return availableCapital
+
 
 def main():
     print("Maximum capital: " +

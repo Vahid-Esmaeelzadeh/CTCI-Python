@@ -22,7 +22,7 @@ def find_subsets(nums):
         n = len(subsets)
         for i in range(n):
             # create a new subset from the existing subset and insert the current element to it
-            set = list(subsets[i])
+            set = list(subsets[i]) # we have to use list(.) because we need a new copy
             set.append(currentNumber)
             subsets.append(set)
 
