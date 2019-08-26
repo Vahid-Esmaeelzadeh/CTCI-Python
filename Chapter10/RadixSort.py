@@ -30,14 +30,15 @@ def sort_digit_based(lst, i):
         count[c_index] -= 1
         k -= 1
     # we cannot write  lst = result
-    for k in range(len(lst)):
-        lst[k] = result[k]
+    lst[:] = result
+    # for k in range(len(lst)):
+    #     lst[k] = result[k]
 
-    print(id(lst))
+    #print(id(lst))
 
 
-a = [random.randint(0, 1000) for _ in range(100)]
-print(id(a))
+a = [random.randint(0, 10) for _ in range(10)]
+#print(id(a))
 print(a)
 radix_sort(a)
 print(a)
