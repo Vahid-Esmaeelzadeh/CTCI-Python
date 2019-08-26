@@ -1,3 +1,8 @@
+'''
+radix sort
+bucket sort
+'''
+
 import random
 import copy
 
@@ -9,8 +14,8 @@ def radix_sort(lst):
 
 
 def sort_digit_based(lst, i):
-    count = [0] * 10
-    result = [0] * len(lst)
+    count = [0 for _ in range(10)]
+    result = [0 for _ in range(len(lst))]
 
     for x in lst:
         count[(x // (10 ** i)) % 10] += 1
@@ -29,6 +34,7 @@ def sort_digit_based(lst, i):
         lst[k] = result[k]
 
     print(id(lst))
+
 
 a = [random.randint(0, 1000) for _ in range(100)]
 print(id(a))

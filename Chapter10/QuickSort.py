@@ -1,3 +1,7 @@
+'''
+quick sort
+'''
+
 import random
 
 

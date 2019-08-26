@@ -1,3 +1,7 @@
+'''
+Merge sort
+'''
+
 import random
 
 
