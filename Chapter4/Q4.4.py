@@ -12,26 +12,6 @@ class BtreeNode:
         self.right = None
 
 
-# region Basic solution O(NlogN)
-def isBalancedTree(root: BtreeNode):
-    if root is None:
-        return True
-
-    left_H = findHeight(root.left)
-    right_H = findHeight(root.right)
-
-    if abs(left_H-right_H) > 1:
-        print("Max difference in heights is: ", abs(left_H-right_H))
-        return False
-
-    return isBalancedTree(root.left) and isBalancedTree(root.right)
-
-
-def findHeight(n: BtreeNode):
-    if n is None:
-        return -1
-    return 1 + max(findHeight(n.left), findHeight(n.right))
-# endregion
 # region O(N) solution
 def checkHeight(n: BtreeNode):
     if n is None:
@@ -55,6 +35,28 @@ def checkHeight(n: BtreeNode):
 def isBalanced(n: BtreeNode):
     return checkHeight(n) != "ERROR"
 
+# endregion
+
+
+# region Basic solution O(NlogN)
+def isBalancedTree(root: BtreeNode):
+    if root is None:
+        return True
+
+    left_H = findHeight(root.left)
+    right_H = findHeight(root.right)
+
+    if abs(left_H-right_H) > 1:
+        print("Max difference in heights is: ", abs(left_H-right_H))
+        return False
+
+    return isBalancedTree(root.left) and isBalancedTree(root.right)
+
+
+def findHeight(n: BtreeNode):
+    if n is None:
+        return -1
+    return 1 + max(findHeight(n.left), findHeight(n.right))
 # endregion
 
 root = BtreeNode(10)

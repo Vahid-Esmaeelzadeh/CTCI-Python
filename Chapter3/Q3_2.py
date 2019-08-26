@@ -5,41 +5,6 @@ which returns the minimum element? Push, pop and min should all operate in 0(1) 
 import sys
 
 
-# region solution 1
-class stackWithMin:
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.values = []
-
-    def push(self, val):
-        if self.isFull():
-            print("The  stack is full.")
-            return
-
-        newMin = min(val, self.min())
-        self.values.append((val, newMin))
-
-    def min(self):
-        if len(self.values) == 0:
-            return sys.maxsize
-        return self.values[-1][1]  # The second item is the local min value
-
-    def pop(self):
-        return self.values.pop()[0]
-
-    def isFull(self):
-        if len(self.values) >= self.capacity:
-            return True
-        return False
-
-    def peek(self):
-        if len(self.values) == 0:
-            print("The stack is empty.")
-            return
-        return self.values[-1][0]
-# endregion
-
-
 # region optimal solution
 class stackWithMin_opt:
     def __init__(self, capacity):
@@ -77,6 +42,43 @@ class stackWithMin_opt:
             return
         return self.values[-1]
 # endregion
+
+
+# region solution 1
+class stackWithMin:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.values = []
+
+    def push(self, val):
+        if self.isFull():
+            print("The  stack is full.")
+            return
+
+        newMin = min(val, self.min())
+        self.values.append((val, newMin))
+
+    def min(self):
+        if len(self.values) == 0:
+            return sys.maxsize
+        return self.values[-1][1]  # The second item is the local min value
+
+    def pop(self):
+        return self.values.pop()[0]
+
+    def isFull(self):
+        if len(self.values) >= self.capacity:
+            return True
+        return False
+
+    def peek(self):
+        if len(self.values) == 0:
+            print("The stack is empty.")
+            return
+        return self.values[-1][0]
+# endregion
+
+
 
 
 stk1 = stackWithMin(10)

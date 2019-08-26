@@ -1,20 +1,7 @@
 '''
-Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you
+String Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you
 cannot use additional data structures?
 '''
-
-
-def is_unique(s: str):
-    if len(s) > 128:
-        return False
-
-    buffer = [False] * 128
-    for c in s:
-        if buffer[ord(c)] is True:
-            return False
-        else:
-            buffer[ord(c)] = True
-    return True
 
 
 def is_unique2(s: str):
@@ -25,6 +12,20 @@ def is_unique2(s: str):
             return False
         buffer |= (1 << code)
 
+    return True
+
+
+def is_unique(s: str):
+    if len(s) > 128:
+        return False
+
+    buffer = [False for _ in range(128)]
+
+    for c in s:
+        if buffer[ord(c)] is True:
+            return False
+        else:
+            buffer[ord(c)] = True
     return True
 
 

@@ -1,4 +1,6 @@
 '''
+Search in a Sorted Infinite Array
+
 Given an infinite sorted array (or an array with unknown size), find if a given number ‘key’ is present in the array.
 Write a function to return the index of the ‘key’ if it is present in the array, otherwise return -1.
 
@@ -27,9 +29,9 @@ def search_in_infinite_array(reader: ArrayReader, key):
     start, end = 0, 1
 
     while key > reader.get(end):
-        new_start = end + 1
-        end = end + (end - start + 1) * 2
-        start = new_start
+        current_window_size = end - start + 1
+        start = end + 1
+        end = end + current_window_size * 2
 
     return binary_search(reader, key, start, end)
 
@@ -49,10 +51,10 @@ def binary_search(reader: ArrayReader, key, start, end):
 
 def main():
     reader = ArrayReader([4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30])
-    print(search_in_infinite_array(reader, 16))
-    print(search_in_infinite_array(reader, 11))
+#    print(search_in_infinite_array(reader, 16))
+ #   print(search_in_infinite_array(reader, 11))
     reader = ArrayReader([1, 3, 8, 10, 15])
-    print(search_in_infinite_array(reader, 15))
+#    print(search_in_infinite_array(reader, 15))
     print(search_in_infinite_array(reader, 200))
 
 

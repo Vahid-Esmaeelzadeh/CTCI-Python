@@ -1,5 +1,5 @@
 '''
-Maximum distinct elements
+Maximum distinct elements by removing K elements
 
 Given an array of numbers and a number ‘K’, we need to remove ‘K’ numbers from the array such that
 we are left with maximum distinct numbers.
@@ -30,39 +30,45 @@ from heapq import *
 
 
 def find_maximum_distinct_elements(nums, k):
-    distinct_elements_count = 0
+    distinctElementsCount = 0
     if len(nums) <= k:
-        return distinct_elements_count
+        return distinctElementsCount
 
-    num_freq_map = {}
+    # find the frequency of each number
+    numFrequencyMap = {}
+    for i in nums:
+        numFrequencyMap[i] = numFrequencyMap.get(i, 0) + 1
 
-    for num in nums:
-        num_freq_map[num] = num_freq_map.get(num, 0) + 1
-
-    min_heap = []
-
-    for num, freq in num_freq_map.items():
-        if freq == 1:
-            distinct_elements_count += 1
+    minHeap = []
+    # insert all numbers with frequency greater than '1' into the min-heap
+    for num, frequency in numFrequencyMap.items():
+        if frequency == 1:
+            distinctElementsCount += 1
         else:
-            heappush(min_heap, (freq, num))
+            heappush(minHeap, (frequency, num))
 
-    while min_heap and k > 0:
-        freq, num = heappop(min_heap)
-        k -= freq - 1
-
+    # following a greedy approach, try removing the least frequent numbers first from the min-heap
+    while k > 0 and minHeap:
+        frequency, num = heappop(minHeap)
+        # to make an element distinct, we need to remove all of its occurrences except one
+        k -= frequency - 1
         if k >= 0:
-            distinct_elements_count += 1
+            distinctElementsCount += 1
 
+    # if k > 0, this means we have to remove some distinct numbers
     if k > 0:
-        distinct_elements_count -= k
+        distinctElementsCount -= k
 
-    return distinct_elements_count
+    return distinctElementsCount
 
 
-print("Maximum distinct numbers after removing K numbers: " +
-      str(find_maximum_distinct_elements([7, 3, 5, 8, 5, 3, 3], 2)))
-print("Maximum distinct numbers after removing K numbers: " +
-      str(find_maximum_distinct_elements([3, 5, 12, 11, 12], 3)))
-print("Maximum distinct numbers after removing K numbers: " +
-      str(find_maximum_distinct_elements([1, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5], 2)))
+def main():
+    print("Maximum distinct numbers after removing K numbers: " +
+          str(find_maximum_distinct_elements([7, 3, 5, 8, 5, 3, 3], 2)))
+    print("Maximum distinct numbers after removing K numbers: " +
+          str(find_maximum_distinct_elements([3, 5, 12, 11, 12], 3)))
+    print("Maximum distinct numbers after removing K numbers: " +
+          str(find_maximum_distinct_elements([1, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5], 2)))
+
+
+main()

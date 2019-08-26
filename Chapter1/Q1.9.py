@@ -1,7 +1,7 @@
 '''
-String Rotation: Assumeyou have a method i5Sub 5tring which checks if one word is a substring
-of another. Given two strings, 51 and 52, write code to check if 52 is a rotation of 51 using only one
-call to i5Sub5tring (e.g.,"waterbottle" is a rotation of"erbottlewat").
+String Rotation: Assume you have a method is_sub_string which checks if one word is a substring
+of another. Given two strings, S1 and S2, write code to check if S2 is a rotation of S1 using only one
+call to is_sub_string (e.g.,"waterbottle" is a rotation of"erbottlewat").
 '''
 
 

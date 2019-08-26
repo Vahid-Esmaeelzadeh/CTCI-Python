@@ -16,14 +16,20 @@ def rotate90(mat: list):
 
         for i in range(first, last):
             offset = i - first
-            top = mat[first][i]  # save top
-            # left -> top
+
+            # save top
+            top = mat[first][i]
+
+            # top <- left   (top row: col is variable, row is fixed = first)
             mat[first][i] = mat[last-offset][first]
-            # bottom -> left
+
+            # left <- bottom (left col: row is variable, col is fixed = first)
             mat[last-offset][first] = mat[last][last-offset]
-            # right -> bottom
+
+            # bottom <- right (bottom row: col is variable, row is fixed = last)
             mat[last][last-offset] = mat[i][last]
-            # top -> right
+
+            # right <- top (right col: row is variable, col is fixed = last)
             mat[i][last] = top
 
     return True

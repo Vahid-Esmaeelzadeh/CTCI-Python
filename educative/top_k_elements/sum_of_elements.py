@@ -1,5 +1,5 @@
 '''
-Sum of elements
+Sum of elements between the K1’th and K2’th smallest elements
 
 Given an array, find the sum of all numbers between the K1’th and K2’th smallest elements of that array.
 
@@ -20,6 +20,7 @@ number (8) is 12 (5+7).
 '''
 
 from heapq import *
+
 
 # using  min-Heap
 def find_sum_of_elements(nums, k1, k2):

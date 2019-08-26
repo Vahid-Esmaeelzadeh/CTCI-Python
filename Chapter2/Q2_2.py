@@ -1,36 +1,8 @@
 '''
-Return Kth to Last: Implement an algorithm to fnd the kth to last element of a singly linked list.
+LinkedList Return Kth to Last: Implement an algorithm to find the kth to last element of a singly linked list.
 '''
 
 from Common.common import *
-
-
-# size-based solution
-def kLast_basic(lst:linkedList, k:int):
-    _size = lst.size()
-    i = _size - k
-
-    current = lst.head
-    while (current is not None) and i > 0:
-        current = current.next
-        i -= 1
-
-    return current
-
-
-# recursive
-def kLast_recr(ll:linkedList, k:int):
-    kLast_helper(ll.head, k)
-
-
-# two-pointer solution
-def kLast_helper(n: Node, k: int):
-    if n is None:
-        return 0
-    index = kLast_helper(n.next, k) + 1
-    if index == k:
-        print(k, "th to the last node is ", n.data)
-    return index
 
 
 def kLast(ll: linkedList, k:int):
@@ -54,6 +26,34 @@ def kLast(ll: linkedList, k:int):
     return current.data
 
 
+# size-based solution
+def kLast_basic(lst:linkedList, k:int):
+    _size = lst.size()
+    i = _size - k
+
+    current = lst.head
+    while (current is not None) and i > 0:
+        current = current.next
+        i -= 1
+
+    return current
+
+
+# recursive
+def kLast_recr(ll:linkedList, k:int):
+    return kLast_helper(ll.head, k)
+
+
+# recursive solution
+def kLast_helper(n: Node, k: int):
+    if n is None:
+        return 0
+    index = kLast_helper(n.next, k) + 1
+    if index == k:
+         print(k, "th to the last node is ", n.data)
+    return index
+
+
 ll = linkedList(Node(1))
 ll.addLast(Node(2))
 ll.addLast(Node(3))
@@ -61,6 +61,6 @@ ll.addLast(Node(4))
 ll.addLast(Node(5))
 
 item = kLast_basic(ll, -1)
-kLast_recr(ll, 1)
-print(kLast(ll, 0))
+print(kLast_recr(ll, 1))
+print(kLast(ll, 2))
 

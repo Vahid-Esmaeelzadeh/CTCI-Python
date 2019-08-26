@@ -40,28 +40,6 @@ class KthLargestNumberInStream2:
         return self.minHeap[0]
 
 
-class KthLargestNumberInStream:
-    max_heap = []
-
-    def __init__(self, nums, k):
-        #self.nums = nums
-        for x in nums:
-            heappush(self.max_heap, -x)
-        self.k = k
-
-    def add(self, num):
-        #self.nums.append(num)
-        heappush(self.max_heap, -num)
-        temp_items = []
-        for _ in range(self.k):
-            temp_items.append(heappop(self.max_heap))
-        for x in temp_items:
-            heappush(self.max_heap, x)
-
-        return -temp_items[-1]
-
-
-
 def main():
     kthLargestNumber = KthLargestNumberInStream2([3, 1, 5, 12, 2, 11], 4)
     print("4th largest number is: " + str(kthLargestNumber.add(6)))

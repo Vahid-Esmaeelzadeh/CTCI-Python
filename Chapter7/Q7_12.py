@@ -1,3 +1,12 @@
+'''
+HashMap implementation
+HashTable implementation
+'''
+
+
+from collections import deque
+
+
 class LinkedListNode:
     def __init__(self, key=None, val=None):
         self.key = key
@@ -8,25 +17,31 @@ class LinkedListNode:
 
 class HashTable:
     def __init__(self, capacity=100):
-        self.arr = [None] * capacity
+        self.arr = [None for _ in range(capacity)]
         self.capacity = capacity
         self.length = 0
 
-    def put(self, key, value):
-        node = self.get_node_for_key(key)
-        if node:  # already there
-            node.value = value
-            return
+    def get_index_for_key(self, key):
+        return hash(key) % self.capacity
 
-        node = LinkedListNode(key, value)
+    def get_node_for_key(self, key):
         index = self.get_index_for_key(key)
+        if index < len(self.arr):
+            current = self.arr[index]
 
-        if self.arr[index]:  # we have a LinkedList for the key
-            node.next = self.arr[index]  # put the new node at the beginning of Lisked List
-            node.next.prev = node
+            while current:
+                if current.key == key:
+                    return current
+                current = current.next
 
-        self.arr[index] = node
-        self.length += 1
+        return None
+
+    # get value for key
+    def get(self, key):
+        node = self.get_node_for_key(key)
+        if node:
+            return node.value
+        return None
 
     def remove(self, key):
         node = self.get_node_for_key(key)
@@ -42,30 +57,25 @@ class HashTable:
 
             self.length -= 1
 
-    # get value for key
-    def get(self, key):
+    def put(self, key, value):
         node = self.get_node_for_key(key)
-        if node:
-            return node.value
-        return None
+        if node:  # already there
+            node.value = value
+            return
 
-    def get_node_for_key(self, key):
+        node = LinkedListNode(key, value)
         index = self.get_index_for_key(key)
-        if index < len(self.arr):
-            current = self.arr[index]
 
-            while current:
-                if current.key == key:
-                    return current
-                current = current.next
+        if self.arr[index]:  # we have a LinkedList for the key
+            node.next = self.arr[index]  # put the new node at the beginning of Linked List
+            node.next.prev = node
 
-        return None
-
-    def get_index_for_key(self, key):
-        return hash(key) % self.capacity
+        self.arr[index] = node
+        self.length += 1
 
     def __len__(self):
         return self.length
+
 
 ht = HashTable()
 ht.put("Vahid", "$10M")

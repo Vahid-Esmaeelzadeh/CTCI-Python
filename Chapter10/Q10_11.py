@@ -52,4 +52,9 @@ print(b)
 sort_valley_peak2(b)
 print(b)
 
+c = [5, 3, 1, 2, 3]
+sort_valley_peak(c)
+print(c)
+
+
 

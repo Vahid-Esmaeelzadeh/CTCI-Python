@@ -1,5 +1,5 @@
 '''
-Palindrome LinkedList (medium)
+LinkedList Palindrome LinkedList(medium)
 Given the head of a Singly LinkedList, write a method to check if the LinkedList is a palindrome or not.
 
 Your algorithm should use constant space and the input LinkedList should be in the original form once the algorithm
@@ -39,7 +39,7 @@ def is_palindromic_linked_list2(head):
         slow = slow.next
         fast = fast.next.next
 
-    # reverse the second  half
+    # reverse the second half
     head_second_half = reverse(slow)
     # store the head of reversed list to retrieve the original one
     copy_head_second_half = head_second_half

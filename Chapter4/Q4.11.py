@@ -32,18 +32,18 @@ class Node:
         else:
             return self.right.getIthNode(i - (leftSize + 1))
 
-    def getRandomNode1(self):
-        if self.left:
-            leftSize = self.left.size
-
-        randIndex = randint(0, self.size - 1)
-
-        if randIndex < leftSize:
-            return self.left.getRandomNode1()
-        elif randIndex == leftSize:
-            return self
-        else:
-            return self.right.getRandomNode1()
+    # def getRandomNode1(self):
+    #     if self.left:
+    #         leftSize = self.left.size
+    #
+    #     randIndex = randint(0, self.size - 1)
+    #
+    #     if randIndex < leftSize:
+    #         return self.left.getRandomNode1()
+    #     elif randIndex == leftSize:
+    #         return self
+    #     else:
+    #         return self.right.getRandomNode1()
 
     def insertInOrder(self, d):
         if d <= self.data:

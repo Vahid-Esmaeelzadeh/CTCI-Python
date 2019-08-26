@@ -25,6 +25,7 @@ def replaceSpaces(s: str, strLen: int):
 
     return ''.join(lst)
 
+
 str1 = "Dr Vahid Esmaeelzadeh    ";
 str2 = replaceSpaces(str1, 21)
 print(str2)

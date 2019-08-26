@@ -1,4 +1,7 @@
-''' Number range
+'''
+
+Number range
+
 Given an array of numbers sorted in ascending order, find the range of a given number ‘key’.
 The range of the ‘key’ will be the first and last position of the ‘key’ in the array.
 

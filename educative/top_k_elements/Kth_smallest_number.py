@@ -7,6 +7,7 @@ Please note that it is the Kth smallest number in the sorted order, not the Kth 
 
 from heapq import *
 
+
 def find_Kth_smallest_number(nums, k):
     min_heap = []
 

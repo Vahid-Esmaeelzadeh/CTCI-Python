@@ -5,41 +5,11 @@ such that for every directed edge (U, V) from vertex U to vertex V, U comes befo
 Given a directed graph, find the topological ordering of its vertices.
 '''
 
-# region my implementation
-def topological_sort(vertices, edges):
-    sorted_order = []
-    adj_dict = convert_to_adj_dict(vertices, edges)
 
-    while len(adj_dict) > 0:
-        root_vertices = extract_root_vertices(adj_dict)
-
-        if len(root_vertices) == 0:
-            break
-
-        for x in root_vertices:
-            sorted_order.append(x)
-            del adj_dict[x]
-
-    return sorted_order
-
-
-def convert_to_adj_dict(vertices, edges):
-    adj_dict = {}
-
-    for i in range(vertices):
-        adj_dict[i] = []
-
-    for v1, v2 in edges:
-        adj_dict[v1].append(v2)
-
-    return adj_dict
-# endregion
-
-# educative.io implementation
 from collections import deque
 
 
-def topological_sort2(vertices, edges):
+def topological_sort(vertices, edges):
     sortedOrder = []
     if vertices <= 0:
         return sortedOrder
@@ -75,20 +45,6 @@ def topological_sort2(vertices, edges):
         return []
 
     return sortedOrder
-
-# endregion
-
-def extract_root_vertices(adj_dict):
-    vertices = set(adj_dict.keys())
-    dependent_vertices = set()
-    for row in adj_dict:
-        for x in adj_dict[row]:
-            dependent_vertices.add(x)
-
-    return vertices - dependent_vertices
-
-
-
 
 
 def main():

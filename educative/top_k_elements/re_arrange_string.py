@@ -26,35 +26,35 @@ from heapq import *
 
 
 def rearrange_string(str):
-    char_freq_map = {}
-    for c in str:
-        char_freq_map[c] = char_freq_map.get(c, 0) + 1
+    charFrequencyMap = {}
+    for char in str:
+        charFrequencyMap[char] = charFrequencyMap.get(char, 0) + 1
 
-    max_heap = []
+    maxHeap = []
+    # add all characters to the max heap
+    for char, frequency in charFrequencyMap.items():
+        heappush(maxHeap, (-frequency, char))
 
-    for char, freq in char_freq_map.items():
-        heappush(max_heap, (-freq, char))
+    previousChar, previousFrequency = None, 0
+    resultString = []
+    while maxHeap:
+        frequency, char = heappop(maxHeap)
+        # add the previous entry back in the heap if its frequency is greater than zero
+        if previousChar and -previousFrequency > 0:
+            heappush(maxHeap, (previousFrequency, previousChar))
+        # append the current character to the result string and decrement its count
+        resultString.append(char)
+        previousChar = char
+        previousFrequency = frequency + 1  # decrement the frequency
 
-    result = []
-    prev_char, prev_freq = None, 0
-
-    while max_heap:
-        freq, char = heappop(max_heap)
-
-        if prev_char and -prev_freq > 0:
-            heappush(max_heap, (prev_freq, prev_char))
-        result.append(char)
-        prev_char = char
-        prev_freq = freq + 1
-
-    return ''.join(result) if len(result) == len(str) else ""
+    # if we were successful in appending all the characters to the result string, return it
+    return ''.join(resultString) if len(resultString) == len(str) else ""
 
 
 def main():
     print("Rearranged string:  " + rearrange_string("aappp"))
-    print("Rearranged string:  " + rearrange_string("aaaabbbbddc"))
+    print("Rearranged string:  " + rearrange_string("Programming"))
     print("Rearranged string:  " + rearrange_string("aapa"))
-    print("Rearranged string:  " + rearrange_string("AAa"))
 
 
 main()

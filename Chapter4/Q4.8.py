@@ -55,17 +55,6 @@ def findDepth(n: Node):
 # endregion - -  -  - going
 
 # region Solution 2 - using parents - better performance - going up only from one node
-def ancestor(root: Node, p: Node, q: Node):
-    if (not covers(root, p)) or (not covers(root, q)):
-        return None
-
-    if p is None or q is None:
-        return None
-
-    while not covers(p, q):
-        p = p.parent
-
-    return p
 def firstCommonAncestor2(root: Node, p: Node, q: Node):
     if (not covers(root, p)) or (not covers(root, q)):
         return None
@@ -89,12 +78,6 @@ def covers1(root: Node, n: Node):
     if root == n:
         return True
     return False
-def covers(root: Node, n: Node):
-    if root is None:
-        return False
-    if root == n:
-        return True
-    return covers(root.left, n) or covers(root.right, n)
 def getSibling(n: Node):
     if n is None or n.parent is None:
         return None
@@ -107,6 +90,13 @@ def getSibling(n: Node):
 # endregion
 
 # region Solution 3 - without links to parents
+def covers(root: Node, n: Node):
+    if root is None:
+        return False
+    if root == n:
+        return True
+    return covers(root.left, n) or covers(root.right, n)
+
 def firstCommonAncestor3(root: Node, p: Node, q: Node):
     if (not covers(root, p)) or (not covers(root, q)):
         return None
@@ -189,8 +179,3 @@ if anc is not None:
 else:
     print("None")
 
-anc = ancestor(n1, n3, n10)
-if anc is not None:
-    print(anc.data)
-else:
-    print("None")

@@ -1,6 +1,6 @@
 '''
 Mountain array
-Bitonic array
+Bitonic Array Maximum
 
 Find the maximum value in a given Bitonic array.
 An array is considered bitonic if it is monotonically increasing and then monotonically decreasing.

@@ -6,6 +6,7 @@ Given a string, sort it based on the decreasing frequency of its characters.
 
 from heapq import *
 
+
 def sort_character_by_frequency(str):
     char_freq_map = {}
 
@@ -17,13 +18,18 @@ def sort_character_by_frequency(str):
         heappush(max_heap, (-freq, c))
 
     result = []
-    while max_heap:
-        freq, char = heappop(max_heap)
-        result.append(char * (-freq))
+    sorted_map = sorted(char_freq_map.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)
+    for x in sorted_map:
+        freq, char = x[1], x[0]
+        result.append(char * freq)
 
+    print(sorted(char_freq_map))
+
+    # while max_heap:
+    #     freq, char = heappop(max_heap)
+    #     result.append(char * (-freq))
+    #
     return ''.join(result)
-
-
 
 
 def main():

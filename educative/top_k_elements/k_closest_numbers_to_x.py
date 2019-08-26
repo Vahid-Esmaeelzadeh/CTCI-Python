@@ -19,6 +19,7 @@ Output: [5, 6, 9]
 from heapq import *
 from collections import deque
 
+
 def find_closest_elements(arr, K, X):
     index = binary_search(arr, X)
     low, high = index - K, index + K
@@ -39,9 +40,6 @@ def find_closest_elements(arr, K, X):
 
     result.sort()
     return result
-
-
-from collections import deque
 
 
 def find_closest_elements2(arr, K, X):
@@ -70,7 +68,13 @@ def find_closest_elements2(arr, K, X):
 
 
 def binary_search(arr, target):
+    if target < arr[0]:
+        return 0
+    if target > arr[-1]:
+        return len(arr) - 1
+
     low, high = 0, len(arr) - 1
+
     while low <= high:
         mid = int(low + (high - low) / 2)
         if arr[mid] == target:
@@ -79,9 +83,13 @@ def binary_search(arr, target):
             low = mid + 1
         else:
             high = mid - 1
-    if low > 0:
-        return low - 1
-    return low
+
+    if arr[low] - target < target - arr[high]:
+        return low
+    return high
+    # if low > 0:
+    #     return low - 1
+    # return low
 
 
 def main():
@@ -101,5 +109,6 @@ def main():
     print("'K' closest numbers to 'X' are: " +
           str(find_closest_elements([2, 4, 5, 6, 9], 3, 10)))
 
+    print(binary_search([1, 4, 7], 3))
 
 main()
