@@ -64,6 +64,7 @@ def count_DP(S, m, n, memo):
         memo[(m, n-S[m-1])] = count_DP(S, m, n - S[m - 1], memo)
     # count is sum of solutions
     # (i) excluding S[m-1] (ii) including S[m-1]
+    memo[(m,n)] = memo[(m-1, n)] + memo[(m, n-S[m-1])]
     return memo[(m-1, n)] + memo[(m, n-S[m-1])]
 
 

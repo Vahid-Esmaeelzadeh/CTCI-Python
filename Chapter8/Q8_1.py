@@ -13,7 +13,7 @@ def countways1(n: int) -> int:
     return countways1(n-1) + countways1(n-2) + countways1(n-3)
 
 def countways2(n: int) -> int:
-    memo = [None] * (n+1)
+    memo = [None for _ in range(n + 1)]
     return countways2_helper(n, memo)
 
 def countways2_helper(n: int, memo: list):

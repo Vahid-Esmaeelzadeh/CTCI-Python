@@ -28,9 +28,11 @@ def diff_ways_to_evaluate_expression(expr):
                     result.append(x * y)
     return result
 
+
 def diff_ways_to_evaluate_expression_dp(expr):
     memo = {}
     return diff_ways_to_evaluate_expression_memo(expr, memo)
+
 
 def diff_ways_to_evaluate_expression_memo(expr, memo):
     if len(expr) == 1:

@@ -39,16 +39,18 @@ def drawLine(screen, width: int, x1: int, x2: int, y: int):
         screen[i] = 0xff
         i += 1
 
-    # fill the last byte
+    # fill the last byte  [11111bbb]
     if byteIndex2 == byteIndex1:  # start and end are in the same byte
-        screen[byteIndex2] &= (0xff ^ ((1 << byteOffset2) - 1))  # preserve the first update
+        screen[byteIndex2] &= (0xff << byteOffset2)
     else:
-        #screen[byteIndex2] = (0xff ^ ((1 << byteOffset2) - 1))
         screen[byteIndex2] = 0xff << byteOffset2
 
 
-a = [0] * 40
-drawLine(a, 64, 7, 9, 3)
-for x in a:
-    print(bin(x))
+a = [0 for _ in range(40)]
+
+drawLine(a, 64, 20, 30, 2)
+for i in range(0, len(a), 8):
+    print(a[i:i+8])
+
+
 

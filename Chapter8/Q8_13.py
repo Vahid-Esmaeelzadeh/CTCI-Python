@@ -33,12 +33,13 @@ def compareBoxes(box1, box2):
         return True
     return False
 
+
 boxes = [(3, 2, 2), (1, 10, 0.25), (4, 4, 1.5)]
 print(createStack1(boxes))
 # endregion
 
 
-# region --- CTCI solution2
+# region --- CTCI solution2 -- memoization
 def createStack2(boxes):
     # sort the boxes based on the height in descending order
     boxes.sort(key=lambda x: x[2], reverse=True)

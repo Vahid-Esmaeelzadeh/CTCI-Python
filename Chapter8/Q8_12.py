@@ -4,7 +4,7 @@ so that none of them share the same row, column, or diagonal. In this case, "dia
 diagonals, not just the two that bisect the board.
 
 0 1 2 3 4 5 6 7
----------------
+----------------
 0 0 0 0 0 0 0 0 | 0
 0 0 0 0 0 0 0 0 | 1
 0 0 0 0 0 0 0 0 | 2
@@ -13,7 +13,7 @@ diagonals, not just the two that bisect the board.
 0 0 0 0 0 0 0 0 | 5
 0 0 0 0 0 0 0 0 | 6
 0 0 0 0 0 0 0 0 | 7
-
+----------------
 '''
 
 import copy
@@ -45,7 +45,7 @@ def checkValid(columns, row1, column1):
 # endregion
 
 
-columns = [None]*8
+columns = [None for _ in range(8)]
 results = []
 
 placeQueens(0, columns, results)

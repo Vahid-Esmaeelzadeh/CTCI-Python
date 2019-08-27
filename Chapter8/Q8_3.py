@@ -1,10 +1,12 @@
 '''
 Magic Index: A magic index in an array A [0..n -1] is defined to be an index such that A[i] = i.
-Given a sorted array of distinct integers, write a method to fnd a magic index, if one exists, in array A.
+Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in array A.
 
 FOLLOW UP
 What if the values are not distinct?
 '''
+
+import math
 
 # region Distinct values
 def magicIndex(lst: list):
@@ -29,8 +31,33 @@ def magicIndex_helper(lst: list, start, end):
         return magicIndex_helper(lst, start, mid - 1)
 
 
-lst = [0, 2, 4, 5, 7, 10, 20]
+# def minimum_magicIndex(lst: list):
+#     return minimum_magicIndex_helper(lst, 0, len(lst) - 1)
+#
+#
+# def minimum_magicIndex_helper(lst: list, start, end):
+#     # at the end, both start and end will be equal, so,
+#     # for two cases: (mid = start = end)
+#     # magicIndex_helper(lst, mid+1, mid) => mid+1 > mid
+#     # magicIndex_helper(lst, mid, mid-1) => mid > mid-1
+#     if start > end:
+#         return -1
+#
+#     mid = (start + end) // 2
+#
+#     if lst[mid] == mid:
+#         if mid - 1 >= 0 and lst[mid - 1] < mid - 1:
+#             return mid
+#         return minimum_magicIndex_helper(lst, start, mid - 1)
+#     if lst[mid] < mid:
+#         return minimum_magicIndex_helper(lst, mid+1, end)
+#     else:
+#         return minimum_magicIndex_helper(lst, start, mid - 1)
+
+
+lst = [0, 1, 3, 5, 7, 10, 20]
 print(magicIndex(lst))
+# print(minimum_magicIndex(lst))
 # endregion
 
 

@@ -10,13 +10,13 @@ Output: 8
 
 def flipBitToWin(N: int) -> int:
     count = 1
-    newZeroIndex = -1
-    midZeroIndex = None
-    oldZeroIndex = None
+    newZeroIndex, midZeroIndex, oldZeroIndex = -1, None, None
     i = 0
-
+    #                         new  mid   old
+    # 10 9 8 7 6 5 4 3 2 1 0 -1    None  None
+    # 1  1 0 1 1 1 0 1 1 1 1
     while N > 0:
-        if (1 & N) == 0:
+        if (1 & N) == 0:  # if bit[i] is zero
             oldZeroIndex = midZeroIndex
             midZeroIndex = newZeroIndex
             newZeroIndex = i

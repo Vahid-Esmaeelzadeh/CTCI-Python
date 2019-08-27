@@ -1,5 +1,5 @@
 '''
-Search in Rotated Array
+Search in Rotated Array : iterative algorithm
 '''
 
 

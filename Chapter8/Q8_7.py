@@ -1,5 +1,5 @@
 '''
-Permutations without Dups: [recursive approach]
+String Permutations without Dups: [recursive approach]
 Write a method to compute all permutations of a string of unique characters.
 '''
 

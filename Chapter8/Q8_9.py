@@ -9,6 +9,7 @@ Output: ((()) ) , (()()) , (())(), ()(()) , () () ()
 
 '''
 
+
 # region basic recursive solution
 def parens1(n):
     if n == 1:

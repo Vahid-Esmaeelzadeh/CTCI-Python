@@ -1,6 +1,6 @@
 '''
-shortest path
-shortest path len
+shortest path in grid
+shortest path len in grid
 '''
 
 from collections import deque

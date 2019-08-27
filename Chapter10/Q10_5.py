@@ -18,7 +18,7 @@ def sparse_search_rcr(a, s, left, right):
 
     mid = calc_mid(a, left, right)
 
-    if mid == -1:
+    if mid == -1:  # we could not find the s in array
         return mid
     if a[mid] == s:
         return mid
