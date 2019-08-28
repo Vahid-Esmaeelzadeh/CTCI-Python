@@ -1,5 +1,5 @@
 '''
-Permutations - iterative (BFS approach)
+Permutations - iterative (07 Tree BFS approach)
 Given a set of distinct numbers, find all of its permutations.
 '''
 

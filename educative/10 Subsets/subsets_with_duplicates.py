@@ -14,7 +14,7 @@ def find_subsets(nums):
 
     for i in range(len(nums)):
         startIndex = 0
-        # if current and the previous elements are same, create new subsets only from the subsets
+        # if current and the previous elements are same, create new subsets only from the 10 subsets pattern
         # added in the previous step
         if i > 0 and nums[i] == nums[i - 1]:
             startIndex = endIndex + 1
@@ -29,8 +29,8 @@ def find_subsets(nums):
 
 
 def main():
-    print("Here is the list of subsets: " + str(find_subsets([1, 3, 3])))
-    print("Here is the list of subsets: " + str(find_subsets([1, 5, 3, 3])))
+    print("Here is the list of 10 subsets pattern: " + str(find_subsets([1, 3, 3])))
+    print("Here is the list of 10 subsets pattern: " + str(find_subsets([1, 5, 3, 3])))
 
 
 main()

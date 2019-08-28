@@ -2,8 +2,8 @@
 Route Between Nodes: Given a directed graph, design an algorithm to find out whether there is a
 route between two nodes.
 
-BFS & DFS
-DFS & BFS
+07 Tree BFS & 08 Tree DFS
+08 Tree DFS & 07 Tree BFS
 '''
 
 from enum import Enum
@@ -35,7 +35,7 @@ def searchDFS(start):
             searchDFS(v)
 
 
-# DFS in graph
+# 08 Tree DFS in graph
 def isThereRoute_DFS(start, end):
     if (start is None) or (end is None):
         return False
@@ -68,7 +68,7 @@ def searchBFS(start: Node):
                 q.append(v)
 
 
-# BFS in graph
+# 07 Tree BFS in graph
 def isThereRoute_BFS(start: Node, end: Node):
     if start == end:
         return [True, 0]  # length of path
