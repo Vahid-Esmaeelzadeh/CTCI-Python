@@ -61,6 +61,37 @@ def find_maximum_depth(root):
     return maximumTreeDepth
 
 
+def minDepth_recursive(root):
+    # Corner Case.Should never be hit unless the code is
+    # called on root = NULL
+    if root is None:
+        return 0
+
+    # Base Case : Leaf node.This acoounts for height = 1
+    if root.left is None and root.right is None:
+        return 1
+
+    # If left subtree is Null, recur for right subtree
+    if root.left is None:
+        return minDepth_recursive(root.right) + 1
+
+    # If right subtree is Null , recur for left subtree
+    if root.right is None:
+        return minDepth_recursive(root.left) + 1
+
+    return min(minDepth_recursive(root.left), minDepth_recursive(root.right)) + 1
+
+
+def maxDepth_recursive(root):
+    if root is None:
+        return 0
+
+    h1 = maxDepth_recursive(root.left)
+    h2 = maxDepth_recursive(root.right)
+
+    return 1 + max(h1, h2)
+
+
 root = TreeNode(12)
 root.left = TreeNode(7)
 root.right = TreeNode(1)
@@ -73,4 +104,5 @@ root.right.left.left = TreeNode(11)
 print("Tree Minimum Depth: " + str(find_minimum_depth(root)))
 print("Tree Maximum Depth: " + str(find_maximum_depth(root)))
 
-
+print(minDepth_recursive(root))
+print(maxDepth_recursive(root))

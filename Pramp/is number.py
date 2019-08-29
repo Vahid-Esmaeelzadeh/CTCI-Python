@@ -1,3 +1,6 @@
+'''
+is number
+'''
 
 def isNumber(s: str) -> bool:
     # states

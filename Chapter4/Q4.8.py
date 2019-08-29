@@ -12,6 +12,26 @@ class Node:
         self.right = None
         self.parent = None
 
+
+# lca for binary search tree
+def lca_BST(root, n1, n2):
+    # Base Case
+    if root is None:
+        return None
+
+    # If both n1 and n2 are smaller than root, then LCA
+    # lies in left
+    if root.data > n1 and root.data > n2:
+        return lca_BST(root.left, n1, n2)
+
+        # If both n1 and n2 are greater than root, then LCA
+    # lies in right
+    if root.data < n1 and root.data < n2:
+        return lca_BST(root.right, n1, n2)
+
+    return root
+
+
 # region Solution 1 - using parents - basic - going up from both nodes
 def firstCommonAncestor1(n1: Node, n2: Node):
     if n1 is None or n2 is None:
