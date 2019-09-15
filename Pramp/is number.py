@@ -2,6 +2,7 @@
 is number
 '''
 
+
 def isNumber(s: str) -> bool:
     # states
     start = 0

@@ -13,15 +13,15 @@ def sort_character_by_frequency(str):
     for c in str:
         char_freq_map[c] = char_freq_map.get(c, 0) + 1
 
-    max_heap = []
-    for c, freq in char_freq_map.items():
-        heappush(max_heap, (-freq, c))
+    # max_heap = []
+    # for c, freq in char_freq_map.items():
+    #     heappush(max_heap, (-freq, c))
 
     result = []
-    sorted_map = sorted(char_freq_map.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)
-    for x in sorted_map:
-        freq, char = x[1], x[0]
-        result.append(char * freq)
+    sorted_map = sorted(char_freq_map.items(), key=lambda cf: cf[1], reverse=True)
+
+    for c, f in sorted_map:
+        result.append(c * f)
 
     print(sorted(char_freq_map))
 

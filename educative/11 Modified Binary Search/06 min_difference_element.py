@@ -68,11 +68,45 @@ def search_min_diff_element(arr, key):
     return arr[diff_index] if diff != math.inf else -1
 
 
+# recursive solution
+def minDiff(arr, key):
+    if key < arr[0]:
+        return arr[0]
+    if key > arr[-1]:
+        return arr[-1]
+
+    return helper(arr, key, 0, len(arr) - 1)
+
+
+def helper(arr, key, start, end):
+    mid = start + (end - start) // 2
+
+    if start > end:
+        return math.inf
+
+    if key == arr[mid]:
+        return  arr[mid]
+    elif key < arr[mid]:
+        minDiff_at_left = helper(arr, key, start, mid - 1)
+        if abs(key - minDiff_at_left) < arr[mid] - key:
+            return minDiff_at_left
+        return arr[mid]
+    else:
+        minDiff_at_right = helper(arr, key, mid + 1, end)
+        if abs(minDiff_at_right - key) < key - arr[mid]:
+            return minDiff_at_right
+        return arr[mid]
+
+
 def main():
     print(search_min_diff_element2([4, 6, 10], 7))
     print(search_min_diff_element2([4, 6, 10], 4))
     print(search_min_diff_element2([1, 3, 8, 10, 15], 14))
     print(search_min_diff_element2([4, 6, 10], 17))
-
+    print()
+    print(minDiff([4, 6, 10], 7))
+    print(minDiff([4, 6, 10], 4))
+    print(minDiff([1, 3, 8, 10, 15], 14))
+    print(minDiff([4, 6, 10], 17))
 
 main()

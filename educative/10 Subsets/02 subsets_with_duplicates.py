@@ -28,9 +28,27 @@ def find_subsets(nums):
     return subsets
 
 
+def subsets(nums):
+    res = [[]]
+    nums.sort()
+    new_subsets = []
+
+    for i in range(len(nums)):
+        if (i > 0 and nums[i] != nums[i-1]) or i == 0:  # first item or distinct number
+            new_subsets = [s + [nums[i]] for s in res]
+        else:  # duplicate num
+            new_subsets = [s + [nums[i]] for s in new_subsets]
+
+        res = res + new_subsets
+
+    return res
+
+
 def main():
-    print("Here is the list of 10 subsets pattern: " + str(find_subsets([1, 3, 3])))
-    print("Here is the list of 10 subsets pattern: " + str(find_subsets([1, 5, 3, 3])))
+    print(find_subsets([1, 3, 3]))
+    print(find_subsets([1, 5, 3, 3]))
+    print(subsets([1, 3, 3]))
+    print(subsets([1, 5, 3, 3]))
 
 
 main()

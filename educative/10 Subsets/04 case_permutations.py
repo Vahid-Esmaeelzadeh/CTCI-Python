@@ -27,11 +27,33 @@ def find_letter_case_string_permutations(str):
     return permutations
 
 
+def casePermutation(st):
+    return helper(st, 0)
+
+
+def helper(st, i):
+    if i >= len(st):
+        return [""]
+
+    result = []
+    rest = helper(st, i + 1)
+
+    if st[i].isalpha():
+        for x in rest:
+            result.append(st[i].lower() + x)
+            result.append(st[i].upper() + x)
+    else:
+        for x in rest:
+            result.append(st[i] + x)
+
+    return result
+
+
 def main():
     print("String permutations are: " +
           str(find_letter_case_string_permutations("ad52")))
     print("String permutations are: " +
           str(find_letter_case_string_permutations("ab7c")))
-
+    print(casePermutation("ab7c"))
 
 main()

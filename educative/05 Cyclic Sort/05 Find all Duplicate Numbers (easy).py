@@ -19,16 +19,17 @@ def find_all_duplicates(nums):
         else:
             i += 1
 
-    duplicateNumbers = []
+    duplicateNumbers = set()
     for i in range(len(nums)):
         if nums[i] != i + 1:
-            duplicateNumbers.append(nums[i])
+            duplicateNumbers.add(nums[i])
 
-    return duplicateNumbers
+    return list(duplicateNumbers)
 
 
 def main():
     print(find_all_duplicates([3, 4, 4, 5, 5]))
+    print(find_all_duplicates([4, 4, 3, 4, 5]))
     print(find_all_duplicates([5, 4, 7, 2, 3, 5, 3]))
 
 

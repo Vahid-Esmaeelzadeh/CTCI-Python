@@ -113,3 +113,5 @@ head.print_list()
 head.next.next.next.next.next = Node(2)
 print("Is palindrome: " + str(is_palindromic_linked_list(head)))
 print("Is palindrome: " + str(is_palindromic_linked_list2(head)))
+
+head.print_list()

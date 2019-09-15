@@ -23,11 +23,13 @@ for key in sorted(my_dict):
     print((key, my_dict[key]))
 
 # using dict.items() and lambda
-print(sorted(my_dict1.items(), key=lambda kv: (kv[0], kv[1])))
+print(sorted(my_dict1.items(), key=lambda kv: kv[0]))
 # sort based on values
-print(sorted(my_dict1.items(), key=lambda kv: (kv[1][1], kv[0]), reverse=True))
+print(sorted(my_dict1.items(), key=lambda kv: kv[1][1], reverse=True))
+print(sorted(my_dict1.items(), key=lambda kv: kv[1][0], reverse=True))
 
-print(sorted(my_dict1.values(), key=lambda v: (v[1], v[0]), reverse=True))
+print(sorted(my_dict1.values(), key=lambda v: v[1], reverse=True))
+print(sorted(my_dict1.values(), key=lambda v: v[0]))
 
 
 

@@ -31,5 +31,7 @@ def main():
     print("Length of the longest substring: " + str(longest_substring_with_k_distinct("araaci", 1)))
     print("Length of the longest substring: " + str(longest_substring_with_k_distinct("cbbebi", 3)))
 
-
+    a = {1, 2}
+    if 1 in a:
+        print(a)
 main()

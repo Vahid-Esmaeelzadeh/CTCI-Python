@@ -13,6 +13,17 @@ class TreeNode:
         self.right = right
 
 
+def count_all_paths(root, s):
+    if root is None:
+        return 0
+    if root.left is None and root.right is None:
+        if s == root.val:
+            return 1
+        return 0
+
+    return count_all_paths(root.left, s - root.val) + count_all_paths(root.right, s - root.val)
+
+
 def find_paths(root, sum):
     allPaths = []
     find_paths_recursive(root, sum, [], allPaths)
@@ -51,6 +62,6 @@ def main():
     print("Tree paths with sum " + str(sum) +
           ": " + str(find_paths(root, sum)))
 
-
+    print(count_all_paths(root, sum))
 
 main()

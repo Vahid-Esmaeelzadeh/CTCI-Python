@@ -23,4 +23,19 @@ def permutations(nums):
     return list(result)
 
 
+def permutations_recr(nums):
+    if len(nums) == 0:
+        return [[]]
+
+    subPerm = permutations_recr(nums[1:])
+    res = []
+
+    for x in subPerm:
+        for i in range(len(nums)):
+            res.append(x[:i] + [nums[0]] + x[i:])
+
+    return res
+
+
 print(permutations([1, 2, 3]))
+print(permutations_recr([1, 2, 3]))

@@ -20,6 +20,6 @@ def permutations(s):
     return result
 
 
-strList = '\n'.join(permutations("aab"))
+strList = '\n'.join(permutations("abc"))
 print(strList)
 
