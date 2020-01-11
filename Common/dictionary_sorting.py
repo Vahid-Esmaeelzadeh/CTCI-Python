@@ -32,4 +32,3 @@ print(sorted(my_dict1.values(), key=lambda v: v[1], reverse=True))
 print(sorted(my_dict1.values(), key=lambda v: v[0]))
 
 
-

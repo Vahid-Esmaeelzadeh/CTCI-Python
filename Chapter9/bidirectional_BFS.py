@@ -1,5 +1,5 @@
 '''
-Bidirectional 07 Tree BFS
+Bidirectional BFS
 '''
 
 from collections import deque
@@ -25,7 +25,7 @@ def bi_bfs(src: Node, dst: Node):
     queue_d.append(dst)
     dst.visited = True
 
-    while len(queue_s) != 0 and len(queue_d) != 0:
+    while queue_s and queue_d:
         s_node = queue_s.popleft()
         d_node = queue_d.popleft()
 

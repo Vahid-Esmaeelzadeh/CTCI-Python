@@ -33,6 +33,11 @@ def print_orders(tasks, prerequisites):
 
 
 def print_all_topological_sorts(graph, inDegree, sources, sortedOrder):
+    # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between tasks, or
+    # we have not processed all the tasks in this recursive call
+    if len(sortedOrder) == len(inDegree):
+        print(sortedOrder)
+
     if sources:
         for vertex in sources:
             sortedOrder.append(vertex)
@@ -46,19 +51,13 @@ def print_all_topological_sorts(graph, inDegree, sources, sortedOrder):
                     sourcesForNextCall.append(child)
 
             # recursive call to print other orderings from the remaining (and new) sources
-            print_all_topological_sorts(
-                graph, inDegree, sourcesForNextCall, sortedOrder)
+            print_all_topological_sorts(graph, inDegree, sourcesForNextCall, sortedOrder)
 
             # backtrack, remove the vertex from the sorted order and put all of its children back to consider
             # the next source instead of the current vertex
             sortedOrder.remove(vertex)
             for child in graph[vertex]:
                 inDegree[child] += 1
-
-    # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between tasks, or
-    # we have not processed all the tasks in this recursive call
-    if len(sortedOrder) == len(inDegree):
-        print(sortedOrder)
 
 
 def main():

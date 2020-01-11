@@ -48,3 +48,6 @@ def isNumber(s: str) -> bool:
 
 
 print(isNumber('-12.34'))
+
+s = "  12.75   "
+aa = s.split()

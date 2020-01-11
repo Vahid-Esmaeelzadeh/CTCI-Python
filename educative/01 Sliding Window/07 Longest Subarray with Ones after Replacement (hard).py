@@ -5,6 +5,28 @@ Given an array containing 0s and 1s, if you are allowed to replace no more than 
 longest subarray having all 1s.
 '''
 
+def length_of_longest_substring1(arr, k):
+    window_start, max_length, max_zeros_count = 0, 0, 0
+
+    # Try to extend the range [window_start, window_end]
+    for window_end in range(len(arr)):
+        if arr[window_end] == 0:
+            max_zeros_count += 1
+
+        # Current window size is from window_start to window_end, overall we have a maximum of 1s
+        # repeating 'max_ones_count' times, this means we can have a window with 'max_ones_count' 1s
+        # and the remaining are 0s which should replace with 1s.
+        # now, if the remaining 1s are more than 'k', it is the time to shrink the window as we
+        # are not allowed to replace more than 'k' 0s
+        if max_zeros_count > k:
+            if arr[window_start] == 0:
+                max_zeros_count -= 1
+            window_start += 1
+
+        max_length = max(max_length, window_end - window_start + 1)
+    return max_length
+
+
 
 def length_of_longest_substring(arr, k):
     window_start, max_length, max_ones_count = 0, 0, 0
@@ -30,9 +52,12 @@ def length_of_longest_substring(arr, k):
 
 def main():
     print(length_of_longest_substring([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], 2))
-    print(length_of_longest_substring(
-        [0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1], 3))
+    print(length_of_longest_substring([0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1], 3))
     print(length_of_longest_substring([1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1], 2))
+    print()
+    print(length_of_longest_substring1([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], 2))
+    print(length_of_longest_substring1([0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1], 3))
+    print(length_of_longest_substring1([1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1], 2))
 
 
 main()
