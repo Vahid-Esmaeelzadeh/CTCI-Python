@@ -40,7 +40,9 @@ def is_palindromic_linked_list2(head):
         fast = fast.next.next
 
     # reverse the second half
+    head.print_list()
     head_second_half = reverse(slow)
+    head.print_list()
     # store the head of reversed list to retrieve the original one
     copy_head_second_half = head_second_half
 
@@ -100,11 +102,11 @@ def is_palindromic_linked_list(head):
     return True
 
 
-head = Node(2)
-head.next = Node(4)
-head.next.next = Node(6)
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
 head.next.next.next = Node(4)
-head.next.next.next.next = Node(2)
+head.next.next.next.next = Node(5)
 
 print("Is palindrome: " + str(is_palindromic_linked_list(head)))
 print("Is palindrome: " + str(is_palindromic_linked_list2(head)))

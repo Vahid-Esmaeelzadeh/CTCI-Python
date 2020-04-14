@@ -39,20 +39,20 @@ def reorder(head):
 
     # rearrange to produce the LinkedList in the required order
     while head_first_half is not None and head_second_half is not None:
-        fnext = head_first_half.next
-        snext = head_second_half.next
-        head_first_half.next = head_second_half
-        head_second_half.next = fnext
-        head_first_half = fnext
-        head_second_half = snext
-
-        # temp = head_first_half.next
+        # fnext = head_first_half.next
+        # snext = head_second_half.next
         # head_first_half.next = head_second_half
-        # head_first_half = temp
-        #
-        # temp = head_second_half.next
-        # head_second_half.next = head_first_half
-        # head_second_half = temp
+        # head_second_half.next = fnext
+        # head_first_half = fnext
+        # head_second_half = snext
+
+        temp = head_first_half.next
+        head_first_half.next = head_second_half
+        head_first_half = temp
+
+        temp = head_second_half.next
+        head_second_half.next = head_first_half
+        head_second_half = temp
 
     # set the next of the last node to 'None'
     if head_first_half is not None:
@@ -76,9 +76,9 @@ def main():
     head.next.next.next = Node(8)
     head.next.next.next.next = Node(10)
     head.next.next.next.next.next = Node(12)
-    head.print_list()
+#    head.print_list()
     reorder(head)
-    head.print_list()
+#    head.print_list()
 
 
 main()

@@ -37,7 +37,7 @@ def find_permutation(str, pattern):
 
 
 def main():
-    print('Permutation exist: ' + str(find_permutation("oidbcaf", "abc")))
+    print('Permutation exist: ' + str(find_permutation("oidbaabcbcaf", "abc")))
     print('Permutation exist: ' + str(find_permutation("odicf", "dc")))
     print('Permutation exist: ' + str(find_permutation("bcdxabcdy", "bcdyabcdx")))
     print('Permutation exist: ' + str(find_permutation("aaacb", "abc")))

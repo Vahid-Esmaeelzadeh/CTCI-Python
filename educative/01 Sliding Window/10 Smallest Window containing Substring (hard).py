@@ -43,7 +43,7 @@ def find_permutation(str, pattern):
 
 
 def main():
-    print(find_permutation("aabdec", "abc"))
+    print(find_permutation("aaabbbbdec", "aabc"))
     print(find_permutation("abdabca", "abc"))
     print(find_permutation("adcad", "abc"))
 

@@ -17,11 +17,12 @@ def can_partition(nums):
 
 
 def can_partition_recursive(nums, target_sum, index, memo):
-    if target_sum < 0 or index >= len(nums):
+    if target_sum == 0:
+        return True
+
+    if len(nums) == 0 or index >= len(nums):
         return False
 
-    if target_sum == 0 and index < len(nums):
-        return True
 
     if (target_sum, index) in memo:
         return memo[(target_sum, index)]

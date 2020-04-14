@@ -66,11 +66,12 @@ class SlidingWindowMedian:
         # move the element to the end and delete it
         heap[ind] = heap[-1]
         del heap[-1]
+        heapify(heap)
         # we can use heapify to readjust the elements but that would be O(N),   # heapq.heapify(heap)
         # instead, we will adjust only one element which will O(logN)
-        if ind < len(heap):
-            heapq._siftup(heap, ind)
-            heapq._siftdown(heap, 0, ind)
+        # if ind < len(heap):
+        #     heapq._siftup(heap, ind)
+        #     heapq._siftdown(heap, 0, ind)
 
     def rebalance_heaps(self):
         # either both the heaps will have equal number of elements or max-heap will have
