@@ -3,6 +3,7 @@ Subset sum
 Given a set of positive numbers, determine if a subset exists whose sum is equal to a given number ‘S’.
 '''
 
+
 def has_subset_with_sum(nums, target_sum):
     if sum(nums) < target_sum:
         return False
