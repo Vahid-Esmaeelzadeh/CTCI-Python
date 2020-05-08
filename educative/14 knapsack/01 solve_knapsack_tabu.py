@@ -26,6 +26,7 @@ def solve_knapsack(profits, weights, capacity):
     print_selected_elements(dp, weights, capacity)
     return dp[0][capacity]
 
+
 def print_selected_elements(dp, weights, capacity):
     print("Selected items are: ", end='')
     for i in range(len(weights)):
@@ -33,6 +34,7 @@ def print_selected_elements(dp, weights, capacity):
             print(str(i) + " ", end='')
             capacity -= weights[i]
     print()
+
 
 def solve_knapsack_opt(profits, weights, capacity):
     n = len(profits)

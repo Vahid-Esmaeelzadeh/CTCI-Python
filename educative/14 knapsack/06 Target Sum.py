@@ -33,28 +33,39 @@ def helper(arr, S, index, memo):
 
     return memo[(S, index)]
 
+# Also, we can convert this problem to the problem 5 as follows:
+# Find the count of subsets of the given numbers whose sum is equal to (S + Sum(nums)) / 2
 
-def target_sum_tabulation(arr, s):
-    n = len(arr)
-    if n == 0:
+
+def target_sum(nums, s):
+    total_sum = sum(nums)
+    if total_sum < s or (s + total_sum) % 2 == 1:
         return 0
+    return count_subsets_tabulation(nums, (s + sum(nums)) // 2)
 
-    min_sum, max_sum = -sum(arr), sum(arr)
-    dp = {(n % 2, 0): 1}
-    result = 0
+
+def count_subsets_tabulation(nums, s):
+    if s == 0:
+        return 1
+    n = len(nums)
+
+    dp = [[0 for _ in range(s + 1)] for _ in range(n + 1)]
+    for i in range(n + 1):
+        dp[i][0] = 1
+
     for i in range(n - 1, -1, -1):
-        for cur_sum in range(min_sum, max_sum + 1):
-            count1 = dp.get(((i + 1) % 2, cur_sum - arr[i]), 0)
-            count2 = dp.get(((i + 1) % 2, cur_sum + arr[i]), 0)
+        for cur_sum in range(1, s + 1):
+            sum1, sum2 = 0, 0
+            if nums[i] <= cur_sum:
+                sum1 = dp[i + 1][cur_sum - nums[i]]
+            sum2 = dp[i + 1][cur_sum]
+            dp[i][cur_sum] = sum1 + sum2
 
-            dp[(i % 2, cur_sum)] = count1 + count2
-            if i == 0:
-                result = max(result, count1 + count2)
-    return result
+    return dp[0][-1]
 
 
 print(targetSum([1, 1, 2, 3], 1))
 print(targetSum([1, 2, 7, 1], 9))
 
-print(target_sum_tabulation([1, 1, 2, 3], 1))
-print(target_sum_tabulation([1, 2, 7, 1], 9))
+print(target_sum([1, 1, 2, 3], 1))
+print(target_sum([1, 2, 7, 1], 9))

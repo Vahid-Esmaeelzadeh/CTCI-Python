@@ -21,4 +21,4 @@ def helper(st, index):
 print(count_PS("abdbca"))
 print(count_PS("cddpd"))
 print(count_PS("pqr"))
-print(count_PS("aaaa"))
+print(count_PS("qqq"))

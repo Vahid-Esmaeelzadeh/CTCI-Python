@@ -23,7 +23,6 @@ def can_partition_recursive(nums, target_sum, index, memo):
     if len(nums) == 0 or index >= len(nums):
         return False
 
-
     if (target_sum, index) in memo:
         return memo[(target_sum, index)]
 
@@ -57,6 +56,7 @@ def can_partition_tabulation(nums):
 
             dp[i][current_sum] = res1 or res2
     return dp[0][-1]
+
 
 def main():
     print("Can partition: " + str(can_partition([1, 2, 3, 4])))

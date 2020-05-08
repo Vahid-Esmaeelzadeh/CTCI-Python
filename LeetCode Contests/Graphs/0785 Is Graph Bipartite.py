@@ -9,7 +9,7 @@ def isBipartite(graph):
 
     queue = deque()
     queue.append((0, 1))
-    partite[0] = 1  # -1 , +1 for partitis
+    partite[0] = 1  # -1 , +1 for parts
 
     # seen = set()
     # seen.add(0)

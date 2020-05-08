@@ -35,6 +35,9 @@ def has_subset_with_sum_recursive(nums, target_sum, index, memo):
     return memo[(target_sum, index)]
 
 
+# the tabulation solution is similar to the problem 2
+
+
 print("Can partition: " + str(has_subset_with_sum([1, 2, 3, 7], 10)))
 print("Can partition: " + str(has_subset_with_sum([1, 2, 7, 1, 5], 9)))
 print("Can partition: " + str(has_subset_with_sum([1, 3, 4, 8], 11)))

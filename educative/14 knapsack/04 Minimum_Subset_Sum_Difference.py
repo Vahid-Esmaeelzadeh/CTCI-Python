@@ -1,6 +1,7 @@
 '''
 Minimum Subset Sum Difference
-Given a set of positive numbers, partition the set into two subsets with minimum difference between their subset sums.
+Given a set of positive numbers, partition the set into two subsets with minimum difference between
+their subset sums.
 '''
 import math
 

@@ -29,7 +29,7 @@ def print_orders(tasks, prerequisites):
         if inDegree[key] == 0:
             sources.append(key)
 
-    print_all_topological_sorts(graph, inDegree, sources, sortedOrder)
+    print_all_topological_sorts1(graph, inDegree, sources, sortedOrder)
 
 
 def print_all_topological_sorts(graph, inDegree, sources, sortedOrder):
@@ -40,13 +40,13 @@ def print_all_topological_sorts(graph, inDegree, sources, sortedOrder):
 
     if sources:
         for vertex in sources:
-            sortedOrder.append(vertex)
+            sortedOrder.append(vertex)  ### ---
             sourcesForNextCall = deque(sources)  # make a copy of sources
             # only remove the current source, all other sources should remain in the queue for the next call
             sourcesForNextCall.remove(vertex)
             # get the node's children to decrement their in-degrees
             for child in graph[vertex]:
-                inDegree[child] -= 1
+                inDegree[child] -= 1  ### ---
                 if inDegree[child] == 0:
                     sourcesForNextCall.append(child)
 
@@ -58,6 +58,30 @@ def print_all_topological_sorts(graph, inDegree, sources, sortedOrder):
             sortedOrder.remove(vertex)
             for child in graph[vertex]:
                 inDegree[child] += 1
+
+
+def print_all_topological_sorts1(graph, inDegree, sources, sortedOrder):
+    if sources:
+        for vertex in sources:
+            sortedOrderForNextCall = sortedOrder.copy()
+            sortedOrderForNextCall.append(vertex)
+            sourcesForNextCall = deque(sources)  # make a copy of sources
+            # only remove the current source, all other sources should remain in the queue for the next call
+            sourcesForNextCall.remove(vertex)
+            # get the node's children to decrement their in-degrees
+            inDegreeForNextCall = inDegree.copy()
+            for child in graph[vertex]:
+                inDegreeForNextCall[child] -= 1  ### ---
+                if inDegreeForNextCall[child] == 0:
+                    sourcesForNextCall.append(child)
+
+            # recursive call to print other orderings from the remaining (and new) sources
+            print_all_topological_sorts(graph, inDegreeForNextCall, sourcesForNextCall, sortedOrderForNextCall)
+
+    # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between tasks, or
+    # we have not processed all the tasks in this recursive call
+    if len(sortedOrder) == len(inDegree):
+        print(sortedOrder)
 
 
 def main():

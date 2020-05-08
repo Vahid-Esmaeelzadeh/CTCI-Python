@@ -30,7 +30,7 @@ def isNumber(s: str) -> bool:
     machine = {
         start: {sign: int_sign, digit: integer, dot: point},
         int_sign: {digit: integer, dot: point},
-        integer: {digit: integer, dot: frac, e: exp},
+        integer: {digit: integer, dot: point, e: exp},
         point: {digit: frac},
         frac: {digit: frac, e: exp},
         exp: {digit: exp_int, sign: exp_sign},
@@ -47,7 +47,8 @@ def isNumber(s: str) -> bool:
     return state in [integer, frac, exp_int]
 
 
-print(isNumber('-12.34'))
+print(isNumber('  -12.34e-32'))
 
-s = "  12.75   "
+s = "  12. 75   "
 aa = s.split()
+print(''.join(aa))
