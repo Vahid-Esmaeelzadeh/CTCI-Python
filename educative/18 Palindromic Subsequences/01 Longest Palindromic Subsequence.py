@@ -3,37 +3,37 @@ Longest Palindromic Subsequence
 '''
 
 
-def find_LPS_length(st):
+def longest_palindromic_subsequence_length(st):
     memo = [[-1 for _ in range(len(st))] for _ in range(len(st))]
-    return find_LPS_length_recursive(st, 0, len(st) - 1, memo)
+    ans = helper(st, 0, len(st) - 1, memo)
+    # print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in memo]))
+    return ans
 
 
-def find_LPS_length_recursive(st, startIndex, endIndex, memo):
-    if startIndex > endIndex:
+def helper(st, i, j, memo):
+    # base cases
+    if i > j:
         return 0
-
-    # every sequence with one element is a palindrome of length 1
-    if startIndex == endIndex:
+    if i == j:
         return 1
 
-    if memo[startIndex][endIndex] != -1:
-        return memo[startIndex][endIndex]
+    if memo[i][j] != -1:
+        return memo[i][j]
 
-    # case 1: elements at the beginning and the end are the same
-    if st[startIndex] == st[endIndex]:
-        memo[startIndex][endIndex] = 2 + find_LPS_length_recursive(st, startIndex + 1, endIndex - 1, memo)
-        return memo[startIndex][endIndex]
+    # case (I): first char is equal to the last char
+    if st[i] == st[j]:
+        memo[i][j] = 2 + helper(st, i + 1, j - 1, memo)
+        return memo[i][j]
+    # case (II)
+    len1 = helper(st, i + 1, j, memo)  # skip a character from beginning
+    len2 = helper(st, i, j - 1, memo)  # skip a character from end
 
-    # case 2: skip one element either from the beginning or the end
-    c1 = find_LPS_length_recursive(st, startIndex + 1, endIndex, memo)
-    c2 = find_LPS_length_recursive(st, startIndex, endIndex - 1, memo)
+    memo[i][j] = max(len1, len2)
 
-    memo[startIndex][endIndex] = max(c1, c2)
-
-    return max(c1, c2)
+    return max(len1, len2)
 
 
-def find_LPS_length_tabualtion(st):
+def longest_palindromic_subsequence_length_tabulation(st):
     n = len(st)
     dp = [[0 for _ in range(n)] for _ in range(n)]
 
@@ -49,14 +49,20 @@ def find_LPS_length_tabualtion(st):
 
     return dp[0][n-1]
 
-def main():
-    print(find_LPS_length("abdbca"))
-    print(find_LPS_length("cddpd"))
-    print(find_LPS_length("pqqp"))
-    print()
-    print(find_LPS_length_tabualtion("abdbca"))
-    print(find_LPS_length_tabualtion("cddpd"))
-    print(find_LPS_length_tabualtion("pqqp"))
+
+print(longest_palindromic_subsequence_length("abcdfba"))
+print(longest_palindromic_subsequence_length("abbcbb"))
+print(longest_palindromic_subsequence_length("accdda"))
+print(longest_palindromic_subsequence_length("aaaaaaa"))
+print(longest_palindromic_subsequence_length("abcdefg"))
 
 
-main()
+print()
+
+print(longest_palindromic_subsequence_length_tabulation("abcdfba"))
+print(longest_palindromic_subsequence_length_tabulation("abbcbb"))
+print(longest_palindromic_subsequence_length_tabulation("accdda"))
+print(longest_palindromic_subsequence_length_tabulation("aaaaaaa"))
+print(longest_palindromic_subsequence_length_tabulation("abcdefg"))
+print("----")
+print(longest_palindromic_subsequence_length_tabulation("cddpd"))

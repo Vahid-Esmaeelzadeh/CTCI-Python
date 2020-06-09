@@ -4,59 +4,57 @@ longest palindromic substring
 
 
 def find_LPS_length(st):
-    return find_LPS_length_recursive(st, 0, len(st) - 1)
+    return helper(st, 0, len(st) - 1)
 
 
-def find_LPS_length_recursive(st, startIndex, endIndex):
-    if startIndex > endIndex:
+def helper(st, i, j):
+    # base cases
+    if i > j:
         return 0
-
-    # every string with one character is a palindrome
-    if startIndex == endIndex:
+    if i == j:
         return 1
 
-    # case 1: elements at the beginning and the end are the same
-    if st[startIndex] == st[endIndex]:
-        remainingLength = endIndex - startIndex - 1
+    # case (I): first char is equal to the last char
+    if st[i] == st[j]:
+        remaining_len = j - i - 1
         # check if the remaining string is also a palindrome
-        if remainingLength == find_LPS_length_recursive(st, startIndex + 1, endIndex - 1):
-            return remainingLength + 2
+        if remaining_len == helper(st, i + 1, j - 1):
+            return remaining_len + 2
 
-    # case 2: skip one character either from the beginning or the end
-    c1 = find_LPS_length_recursive(st, startIndex + 1, endIndex)
-    c2 = find_LPS_length_recursive(st, startIndex, endIndex - 1)
+    # case (II)
+    c1 = helper(st, i + 1, j)  # skip a character from beginning
+    c2 = helper(st, i, j - 1)  # skip a character from end
     return max(c1, c2)
 
 
-def find_LPS_length_dp(st):
+def find_LPS_length_memo(st):
     n = len(st)
-    dp = [[-1 for _ in range(n)] for _ in range(n)]
-    return find_LPS_length_recursive_dp(dp, st, 0, n - 1)
+    memo = [[-1 for _ in range(n)] for _ in range(n)]
+    return helper_memo(memo, st, 0, n - 1)
 
 
-def find_LPS_length_recursive_dp(dp, st, startIndex, endIndex):
-    if startIndex > endIndex:
+def helper_memo(memo, st, i, j):
+    if i > j:
         return 0
-
-    # every string with one character is a palindrome
-    if startIndex == endIndex:
+    if i == j:
         return 1
 
-    if dp[startIndex][endIndex] == -1:
-        # case 1: elements at the beginning and the end are the same
-        if st[startIndex] == st[endIndex]:
-            remainingLength = endIndex - startIndex - 1
-            # if the remaining string is a palindrome too
-            if remainingLength == find_LPS_length_recursive_dp(dp, st, startIndex + 1, endIndex - 1):
-                dp[startIndex][endIndex] = remainingLength + 2
-                return dp[startIndex][endIndex]
+    if memo[i][j] == -1:
+        # case (I): first char is equal to the last char
+        if st[i] == st[j]:
+            remaining_len = j - i - 1
+            # check if the remaining substring is palindromic
+            if remaining_len == helper_memo(memo, st, i + 1, j - 1):
+                memo[i][j] = remaining_len + 2
+                return memo[i][j]
 
-        # case 2: skip one character either from the beginning or the end
-        c1 = find_LPS_length_recursive_dp(dp, st, startIndex + 1, endIndex)
-        c2 = find_LPS_length_recursive_dp(dp, st, startIndex, endIndex - 1)
-        dp[startIndex][endIndex] = max(c1, c2)
+        # case (II)
+        c1 = helper_memo(memo, st, i + 1, j)  # skip a character from beginning
+        c2 = helper_memo(memo, st, i, j - 1)  # skip a character from end
+        memo[i][j] = max(c1, c2)
 
-    return dp[startIndex][endIndex]
+    return memo[i][j]
+
 
 def main():
     print(find_LPS_length("abdbca"))

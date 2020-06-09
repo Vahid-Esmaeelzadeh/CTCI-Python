@@ -17,7 +17,7 @@ def merge(intervals_a, intervals_b):
 
     while i < len(intervals_a) and j < len(intervals_b):
         # check if intervals overlap and intervals_a[i]'s start time lies within the other intervals_b[j]
-        a_overlaps_b =  intervals_b[j][start] <= intervals_a[i][start] <= intervals_b[j][end]
+        a_overlaps_b = intervals_b[j][start] <= intervals_a[i][start] <= intervals_b[j][end]
 
         # check if intervals overlap and intervals_a[j]'s start time lies within the other intervals_b[i]
         b_overlaps_a = intervals_a[i][start] <= intervals_b[j][start] <= intervals_a[i][end]
@@ -39,6 +39,10 @@ def merge(intervals_a, intervals_b):
 def main():
     print("Intervals Intersection: " + str(merge([[1, 3], [5, 6], [7, 9]], [[2, 3], [5, 7]])))
     print("Intervals Intersection: " + str(merge([[1, 3], [5, 7], [9, 12]], [[5, 10]])))
+
+    A = [[14, 16]]
+    B = [[7, 13], [16, 20]]
+    print(merge(A, B))
 
 
 main()

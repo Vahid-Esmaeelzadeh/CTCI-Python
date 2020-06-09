@@ -27,14 +27,13 @@ Here the shortest route is (0, 3), (1, 3), (2, 3), (2, 4).
 
 from collections import deque
 
-
 def shortest_path(grid):
-    n_row, n_col = len(grid), len(grid[0])
+    rows, cols = len(grid), len(grid[0])
 
     queue = deque()
 
-    for i in range(n_row):
-        for j in range(n_col):
+    for i in range(rows):
+        for j in range(cols):
             if grid[i][j] == 'S':
                 queue.append([i, j, 0])
                 grid[i][j] = 'D'  # visited, it means we cannot enter it again
@@ -43,20 +42,19 @@ def shortest_path(grid):
         r, c, length = queue.popleft()
 
         for dr, dc in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
-            if 0 <= r + dr < n_row and 0 <= c + dc < n_col:
+            if 0 <= r+dr < rows and 0 <= c+dc < cols:
                 if grid[r+dr][c+dc] == 'X':
                     return length + 1
                 if grid[r+dr][c+dc] == 'O':
                     grid[r+dr][c+dc] = 'D'  # visited, it means we cannot enter it again
                     queue.append([r+dr, c+dc, length+1])
-
     return -1
 
 
-grid = [['X', 'O', 'D', 'S', 'S'],
-        ['D', 'O', 'D', 'O', 'D'],
-        ['D', 'O', 'O', 'O', 'D'],
-        ['X', 'D', 'D', 'O', 'O'],
-        ['X', 'D', 'D', 'D', 'O']]
+grid = [['S', 'O', 'O', 'S', 'S'],
+         ['D', 'O', 'D', 'O', 'D'],
+         ['O', 'O', 'O', 'O', 'X'],
+         ['X', 'D', 'D', 'O', 'O'],
+         ['X', 'D', 'D', 'D', 'O']]
 
 print(shortest_path(grid))

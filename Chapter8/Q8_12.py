@@ -16,43 +16,46 @@ diagonals, not just the two that bisect the board.
 ----------------
 '''
 
-import copy
 
 # region Question 8.12 (8 queens - CTCI solution)
 GRID_SIZE = 8
 
 
-def placeQueens(row, columns, results):
+def placeQueens(row, queens, results):
     if row == GRID_SIZE:
-        results.append(columns)
+        results.append(list(queens))
     else:
-        for col in range(GRID_SIZE):
-            if checkValid(columns, row, col):
-                columns[row] = col
-                placeQueens(row+1, columns[:], results)
+        for col in range(8):
+            if is_valid(queens, row, col):
+                queens[row] = col
+                placeQueens(row + 1, queens, results)
+                queens[row] = None
 
 
-def checkValid(columns, row1, column1):
-    for row2 in range(row1):
-        column2 = columns[row2]
+def is_valid(queens, row, col):
+    for r in range(row):
+        new_col = queens[r]
 
-        if column1 == column2:
+        if col == new_col:
             return False
-        if abs(column2-column1) == (row1-row2):
+        if abs(new_col - col) == (row - r):
             return False
 
     return True
+
+
 # endregion
 
 
-columns = [None for _ in range(8)]
+queens = [None for _ in range(8)]
 results = []
 
-placeQueens(0, columns, results)
+placeQueens(0, queens, results)
 print(len(results))
 
 for s in results:
     print(*s)
+
 
 # region my solution
 def queens(n, chess):
@@ -64,11 +67,11 @@ def queens(n, chess):
     cell = find_smallest_cell(chess)
     # update the chess if we don't use the smallest cell
     chess1 = copy.deepcopy(chess)
-    #chess1 = chess[:]
+    # chess1 = chess[:]
     chess1[cell] = -1
     # update the chess if we use the smallest cell
     chess2 = updateChess(chess, cell)
-    return queens(n, chess1) + queens(n-1, chess2)
+    return queens(n, chess1) + queens(n - 1, chess2)
 
 
 def noWay(chess):
@@ -87,7 +90,7 @@ def updateChess(chess, cell):
 
     for i in range(8):
         for j in range(8):
-            if i == row or j == col or abs(i-row) == abs(j-col):
+            if i == row or j == col or abs(i - row) == abs(j - col):
                 chess2[(i, j)] = -1
     return chess2
 
@@ -101,12 +104,10 @@ def find_smallest_cell(chess):
 
 chess = {(x, y): 0 for x in range(8) for y in range(8)}
 
-#print(queens(8, chess))
+# print(queens(8, chess))
 print(chess)
 
 # endregion
 
 
 # FINAL REVIEW NEEDED
-
-
