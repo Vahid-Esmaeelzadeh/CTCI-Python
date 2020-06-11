@@ -2,7 +2,6 @@
 1192. Critical Connections in a Network
 '''
 
-import collections
 class Solution:
     def criticalConnections(self, n, connections):
         # creating a dictionary to represent the graph
@@ -26,21 +25,20 @@ class Solution:
 
         return critical_edges
 
-    def isConnected(graph):
+    def isConnected(self, graph):
         seen = {i: False for i in range(len(graph))}
-        dfs(graph, seen, 0)
+        self.dfs(graph, seen, 0)
 
         for x in seen.values():
             if x is False:
                 return False
         return True
 
-    def dfs(graph, seen, node):
+    def dfs(self, graph, seen, node):
         seen[node] = True
         for n in graph[node]:
             if seen[n] is False:
-                dfs(graph, seen, n)
-
+                self.dfs(graph, seen, n)
 
 
 n = 5

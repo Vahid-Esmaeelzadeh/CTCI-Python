@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CTCI-Python.iml" filepath="$PROJECT_DIR$/.idea/CTCI-Python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Meetups/.idea/Meetups.iml" filepath="$PROJECT_DIR$/../Meetups/.idea/Meetups.iml" />
     </modules>
   </component>
 </project>
